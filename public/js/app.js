@@ -9619,11 +9619,15 @@ window.setupEditor = function () {
 
       this.editor = new _tiptap_core__WEBPACK_IMPORTED_MODULE_0__.Editor({
         element: element,
+        updateAt: Date.now(),
         extensions: [_tiptap_starter_kit__WEBPACK_IMPORTED_MODULE_1__["default"]],
-        content: this.content,
+        content: 'hello',
         onUpdate: function onUpdate(_ref) {
           var editor = _ref.editor;
           _this.content = editor.getHTML();
+        },
+        onSelectionUpdate: function onSelectionUpdate() {
+          _this.updateAt = Date.now();
         }
       });
     }
