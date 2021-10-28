@@ -42,11 +42,11 @@
             <button
                     class="flex items-center px-3 py-1 bg-gray-200 rounded-lg shadow-xs cursor-pointer hover:bg-gray-500 hover:text-gray-100"
                     @click="editor.chain().focus().toggleHeading({ level: 6 }).run()"
-
                     :class="{ 'is-active bg-gray-600 text-white': editor.isActive('heading', { level: 6}) }">h6</button>
             <button
                     class="flex items-center px-3 py-1 bg-gray-200 rounded-lg shadow-xs cursor-pointer hover:bg-gray-500 hover:text-gray-100"
-                    @click="editor.chain().focus().toggleBulletList().run()">bullet list</button>
+                    @click="editor.chain().focus().toggleBulletList().run()"
+                    :class="{ 'is-active bg-gray-600 text-white': editor.isActive('bulletList') }">bullet list</button>
             <button
                     class="flex items-center px-3 py-1 bg-gray-200 rounded-lg shadow-xs cursor-pointer hover:bg-gray-500 hover:text-gray-100"
                     @click="editor.chain().focus().toggleOrderedList().run()">ordered list</button>
