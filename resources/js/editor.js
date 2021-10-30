@@ -8,16 +8,29 @@ window.setupEditor = function() {
         init(element) {
             this.editor = new Editor({
                 element: element,
-                content: 'hello',
+                content: {
+                    "type": "doc",
+                    "content": [
+                        {
+                            "type": "paragraph",
+                            "content": [
+                              {
+                                "type": "text",
+                                "text": "Wow, this editor instance exports its content as JSON."
+                              }
+                            ]
+                        }
+                    ]
+                },
                 updateAt: Date.now(),
                 extensions: [
                     StarterKit
                 ],
                 onUpdate: ({ editor }) => {
-                    this.content = editor.getHTML()
+                    this.content = JSON.stringify(editor.getJSON());
                 },
                 onSelectionUpdate: () =>{
-                    this.updateAt = Date.now()
+                    this.updateAt = Date.now();
                 },
             })
         },

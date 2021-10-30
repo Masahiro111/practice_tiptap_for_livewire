@@ -49,13 +49,16 @@
                     :class="{ 'is-active bg-gray-600 text-white': editor.isActive('bulletList') }">bullet list</button>
             <button
                     class="flex items-center px-3 py-1 bg-gray-200 rounded-lg shadow-xs cursor-pointer hover:bg-gray-500 hover:text-gray-100"
-                    @click="editor.chain().focus().toggleOrderedList().run()">ordered list</button>
+                    @click="editor.chain().focus().toggleOrderedList().run()"
+                    :class="{ 'is-active bg-gray-600 text-white': editor.isActive('orderedList') }">ordered list</button>
             <button
                     class="flex items-center px-3 py-1 bg-gray-200 rounded-lg shadow-xs cursor-pointer hover:bg-gray-500 hover:text-gray-100"
-                    @click="editor.chain().focus().toggleCodeBlock().run()">code block</button>
+                    @click="editor.chain().focus().toggleCodeBlock().run()"
+                    :class="{ 'is-active bg-gray-600 text-white': editor.isActive('codeBlock') }">code block</button>
             <button
                     class="flex items-center px-3 py-1 bg-gray-200 rounded-lg shadow-xs cursor-pointer hover:bg-gray-500 hover:text-gray-100"
-                    @click="editor.chain().focus().toggleBlockquote().run()">blockquote</button>
+                    @click="editor.chain().focus().toggleBlockquote().run()"
+                    :class="{ 'is-active bg-gray-600 text-white': editor.isActive('blockquote') }">blockquote</button>
             <button
                     class="flex items-center px-3 py-1 bg-gray-200 rounded-lg shadow-xs cursor-pointer hover:bg-gray-500 hover:text-gray-100"
                     @click="editor.chain().focus().undo().run()">undo</button>

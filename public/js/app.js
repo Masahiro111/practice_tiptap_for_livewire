@@ -9619,12 +9619,21 @@ window.setupEditor = function () {
 
       this.editor = new _tiptap_core__WEBPACK_IMPORTED_MODULE_0__.Editor({
         element: element,
+        content: {
+          "type": "doc",
+          "content": [{
+            "type": "paragraph",
+            "content": [{
+              "type": "text",
+              "text": "Wow, this editor instance exports its content as JSON."
+            }]
+          }]
+        },
         updateAt: Date.now(),
         extensions: [_tiptap_starter_kit__WEBPACK_IMPORTED_MODULE_1__["default"]],
-        content: 'hello',
         onUpdate: function onUpdate(_ref) {
           var editor = _ref.editor;
-          _this.content = editor.getHTML();
+          _this.content = JSON.stringify(editor.getJSON());
         },
         onSelectionUpdate: function onSelectionUpdate() {
           _this.updateAt = Date.now();
