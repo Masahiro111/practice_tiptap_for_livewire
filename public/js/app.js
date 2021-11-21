@@ -9627,6 +9627,18 @@ window.setupEditor = function () {
               "type": "text",
               "text": "Wow, this editor instance exports its content as JSON."
             }]
+          }, {
+            "type": "paragraph",
+            "content": [{
+              "type": "text",
+              "text": "Wow, this editor instance exports its content as JSON."
+            }]
+          }, {
+            "type": "paragraph",
+            "content": [{
+              "type": "text",
+              "text": "Wow, this editor instance exports its content as JSON."
+            }]
           }]
         },
         updateAt: Date.now(),

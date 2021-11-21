@@ -19,6 +19,24 @@ window.setupEditor = function() {
                                 "text": "Wow, this editor instance exports its content as JSON."
                               }
                             ]
+                        },
+                        {
+                            "type": "paragraph",
+                            "content": [
+                              {
+                                "type": "text",
+                                "text": "Wow, this editor instance exports its content as JSON."
+                              }
+                            ]
+                        },
+                        {
+                            "type": "paragraph",
+                            "content": [
+                              {
+                                "type": "text",
+                                "text": "Wow, this editor instance exports its content as JSON."
+                              }
+                            ]
                         }
                     ]
                 },
@@ -32,7 +50,7 @@ window.setupEditor = function() {
                 onSelectionUpdate: () =>{
                     this.updateAt = Date.now();
                 },
-            })
+            });
         },
     }
 }
