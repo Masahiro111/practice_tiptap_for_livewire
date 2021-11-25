@@ -14,6 +14,9 @@ window.setupEditor = function() {
                 extensions: [
                     StarterKit,
                     Image,
+                    Link.configure({
+                        openOnClick: false,
+                    }),
                 ],
                 editable: true,
                 onUpdate: ({ editor }) => {
