@@ -2,6 +2,7 @@
 import { Editor } from '@tiptap/core'
 import StarterKit from '@tiptap/starter-kit'
 import Image from '@tiptap/extension-image'
+import Link from '@tiptap/extension-link'
 
 window.setupEditor = function() {
     return {
@@ -15,6 +16,11 @@ window.setupEditor = function() {
                     StarterKit,
                     Image,
                     Link.configure({
+                        HTMLAttributes: { 
+                            target: '_blank',
+                            rel: 'noopener',
+                            class: 'text-blue-500',
+                        },
                         openOnClick: false,
                     }),
                 ],
@@ -27,6 +33,27 @@ window.setupEditor = function() {
                 },
             });
         },
+
+        // Set Link ------------------------------------------------------------------
+        setLink() {
+            const previousUrl = this.editor.getAttributes('link').href;
+            const url = window.prompt('URL', previousUrl);
+      
+            // cancelled
+            if (url === null) {
+              return;
+            }
+      
+            // empty
+            if (url === '') {
+              this.editor.chain().focus().extendMarkRange('link').unsetLink().run();
+              return;
+            }
+      
+            // update link
+            this.editor.chain().focus().extendMarkRange('link').setLink({ href: url }).run();
+        },
+
         // addImage() {
         //     const url = window.prompt('URL')
       
