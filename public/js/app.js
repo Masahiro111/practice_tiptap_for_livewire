@@ -9864,7 +9864,20 @@ window.setupEditor = function () {
             "type": "paragraph",
             "content": [{
               "type": "text",
-              "text": "Starter Admin For Laravel. This repo is based on practical web application development course on youtube. You can watch the videos on how we make this project or just git clone the project and start using. it. "
+              "text": "Starter Admin For "
+            }, {
+              "type": "text",
+              "marks": [{
+                "type": "link",
+                "attrs": {
+                  "href": "https://google.com",
+                  "target": "_blank"
+                }
+              }],
+              "text": "Laravel"
+            }, {
+              "type": "text",
+              "text": ". This repo is based on practical web application development course on youtube. You can watch the videos on how we make this project or just git clone the project and start using. it. "
             }]
           }, {
             "type": "heading",
@@ -9879,6 +9892,13 @@ window.setupEditor = function () {
             "type": "paragraph",
             "content": [{
               "type": "text",
+              "marks": [{
+                "type": "link",
+                "attrs": {
+                  "href": "https://www.youtube.com/playlist?list=PLB4AdipoHpxaHDLIaMdtro1eXnQtl_UvE",
+                  "target": "_blank"
+                }
+              }],
               "text": "https://www.youtube.com/playlist?list=PLB4AdipoHpxaHDLIaMdtro1eXnQtl_UvE"
             }]
           }, {
@@ -9897,28 +9917,43 @@ window.setupEditor = function () {
               "text": "Here are the things you will learn in this series and what the repo include out of the box: "
             }]
           }, {
-            "type": "paragraph",
+            "type": "bulletList",
             "content": [{
-              "type": "text",
-              "text": "* How use Vue Router with Laravel * How to Install AdminLTE 3 * How to Use Font Awesome 5 on Laravel * How integrate mailchimp with laravel "
-            }]
-          }, {
-            "type": "paragraph",
-            "content": [{
-              "type": "text",
-              "text": "* How to use Laravel Socialite * How to Login Using Social Media "
-            }]
-          }, {
-            "type": "paragraph",
-            "content": [{
-              "type": "text",
-              "text": "* How to Use API in Laravel "
-            }]
-          }, {
-            "type": "paragraph",
-            "content": [{
-              "type": "text",
-              "text": "* Api Auth with Laravel Passport "
+              "type": "listItem",
+              "content": [{
+                "type": "paragraph",
+                "content": [{
+                  "type": "text",
+                  "text": "How use Vue Router with Laravel * How to Install AdminLTE 3 * How to Use Font Awesome 5 on Laravel * How integrate mailchimp with laravel "
+                }]
+              }]
+            }, {
+              "type": "listItem",
+              "content": [{
+                "type": "paragraph",
+                "content": [{
+                  "type": "text",
+                  "text": "How to use Laravel Socialite * How to Login Using Social Media "
+                }]
+              }]
+            }, {
+              "type": "listItem",
+              "content": [{
+                "type": "paragraph",
+                "content": [{
+                  "type": "text",
+                  "text": "How to Use API in Laravel "
+                }]
+              }]
+            }, {
+              "type": "listItem",
+              "content": [{
+                "type": "paragraph",
+                "content": [{
+                  "type": "text",
+                  "text": "Api Auth with Laravel Passport "
+                }]
+              }]
             }]
           }, {
             "type": "bulletList",
@@ -10026,10 +10061,46 @@ window.setupEditor = function () {
               }]
             }]
           }, {
+            "type": "heading",
+            "attrs": {
+              "level": 3
+            },
+            "content": [{
+              "type": "text",
+              "text": "Code review"
+            }]
+          }, {
+            "type": "codeBlock",
+            "attrs": {
+              "language": "js"
+            },
+            "content": [{
+              "type": "text",
+              "text": "const a = \"hello\";"
+            }]
+          }, {
+            "type": "paragraph",
+            "content": [{
+              "type": "text",
+              "text": "Create new row is "
+            }, {
+              "type": "text",
+              "marks": [{
+                "type": "code"
+              }],
+              "text": "Ctrl + Enter"
+            }, {
+              "type": "text",
+              "text": " "
+            }]
+          }, {
             "type": "paragraph"
           }]
         },
         updateAt: Date.now(),
+        // editorProps: {
+        //     class: 'prose prose-sm sm:prose lg:prose-lg xl:prose-2xl mx-auto focus:outline-none',
+        // },
         extensions: [_tiptap_starter_kit__WEBPACK_IMPORTED_MODULE_1__["default"], _tiptap_extension_image__WEBPACK_IMPORTED_MODULE_2__["default"], _tiptap_extension_link__WEBPACK_IMPORTED_MODULE_3__["default"].configure({
           HTMLAttributes: {
             target: '_blank',
