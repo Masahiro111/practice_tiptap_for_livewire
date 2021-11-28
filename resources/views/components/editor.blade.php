@@ -16,8 +16,9 @@
                                 class="flex items-center justify-center w-8 h-8 -ml-2 rounded hover:bg-gray-300 hover:text-gray-700"
                                 @click="editor.chain().toggleBold().focus().run()"
                                 :class="{ 'is-active bg-gray-200 text-gray-700': editor.isActive('bold') }">
-                                <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16">
-                                        <path fill-rule="evenodd" d="M4 2a1 1 0 00-1 1v10a1 1 0 001 1h5.5a3.5 3.5 0 001.852-6.47A3.5 3.5 0 008.5 2H4zm4.5 5a1.5 1.5 0 100-3H5v3h3.5zM5 9v3h4.5a1.5 1.5 0 000-3H5z" />
+                                <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                                        <path fill="none" d="M0 0h24v24H0z" />
+                                        <path d="M8 11h4.5a2.5 2.5 0 1 0 0-5H8v5zm10 4.5a4.5 4.5 0 0 1-4.5 4.5H6V4h6.5a4.5 4.5 0 0 1 3.256 7.606A4.498 4.498 0 0 1 18 15.5zM8 13v5h5.5a2.5 2.5 0 1 0 0-5H8z" />
                                 </svg>
                         </button>
 
@@ -26,8 +27,9 @@
                                class="flex items-center justify-center w-8 h-8 -ml-2 rounded hover:bg-gray-300 hover:text-gray-700"
                                @click="editor.chain().toggleBold().focus().run()"
                                :class="{ 'is-active bg-gray-200 text-gray-700': editor.isActive('image') }">
-                                <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16">
-                                        <path fill-rule="evenodd" d="M1.75 2.5a.25.25 0 00-.25.25v10.5c0 .138.112.25.25.25h.94a.76.76 0 01.03-.03l6.077-6.078a1.75 1.75 0 012.412-.06L14.5 10.31V2.75a.25.25 0 00-.25-.25H1.75zm12.5 11H4.81l5.048-5.047a.25.25 0 01.344-.009l4.298 3.889v.917a.25.25 0 01-.25.25zm1.75-.25V2.75A1.75 1.75 0 0014.25 1H1.75A1.75 1.75 0 000 2.75v10.5C0 14.216.784 15 1.75 15h12.5A1.75 1.75 0 0016 13.25zM5.5 6a.5.5 0 11-1 0 .5.5 0 011 0zM7 6a2 2 0 11-4 0 2 2 0 014 0z" />
+                                <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                                        <path fill="none" d="M0 0h24v24H0z" />
+                                        <path d="M4.828 21l-.02.02-.021-.02H2.992A.993.993 0 0 1 2 20.007V3.993A1 1 0 0 1 2.992 3h18.016c.548 0 .992.445.992.993v16.014a1 1 0 0 1-.992.993H4.828zM20 15V5H4v14L14 9l6 6zm0 2.828l-6-6L6.828 19H20v-1.172zM8 11a2 2 0 1 1 0-4 2 2 0 0 1 0 4z" />
                                 </svg>
                                 <input type="file" class="hidden" onchange="uploadImage">
                         </label>
@@ -37,9 +39,9 @@
                                 class="flex items-center justify-center w-8 h-8 -ml-2 rounded hover:bg-gray-300 hover:text-gray-700"
                                 @click="editor.chain().focus().toggleOrderedList().run()"
                                 :class="{ 'is-active bg-gray-200 text-gray-700': editor.isActive('orderedList') }">
-                                <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-4 h-4">
+                                <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
                                         <path fill="none" d="M0 0h24v24H0z" />
-                                        <path d="M8 4h13v2H8V4zM4.5 6.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm0 7a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm0 6.9a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zM8 11h13v2H8v-2zm0 7h13v2H8v-2z" />
+                                        <path d="M8 4h13v2H8V4zM5 3v3h1v1H3V6h1V4H3V3h2zM3 14v-2.5h2V11H3v-1h3v2.5H4v.5h2v1H3zm2 5.5H3v-1h2V18H3v-1h3v4H3v-1h2v-.5zM8 11h13v2H8v-2zm0 7h13v2H8v-2z" />
                                 </svg>
                         </button>
 
@@ -48,7 +50,7 @@
                                 class="flex items-center justify-center w-8 h-8 -ml-2 rounded hover:bg-gray-300 hover:text-gray-700"
                                 @click="editor.chain().focus().toggleItalic().run()"
                                 :class="{ 'is-active bg-gray-200 text-gray-700': editor.isActive('italic') }">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-5 h-5 fill-current">
+                                <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
                                         <path fill="none" d="M0 0h24v24H0z" />
                                         <path d="M15 20H7v-2h2.927l2.116-12H9V4h8v2h-2.927l-2.116 12H15z" />
                                 </svg>
@@ -60,8 +62,12 @@
                                 @click="setLink"
                                 :class="{ 'is-active bg-gray-200 text-gray-700': editor.isActive('link') }">
                                 <!-- icon: go-link-16 -->
-                                <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16">
+                                <!-- <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16">
                                         <path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z" />
+                                </svg> -->
+                                <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                                        <path fill="none" d="M0 0h24v24H0z" />
+                                        <path d="M13.06 8.11l1.415 1.415a7 7 0 0 1 0 9.9l-.354.353a7 7 0 0 1-9.9-9.9l1.415 1.415a5 5 0 1 0 7.071 7.071l.354-.354a5 5 0 0 0 0-7.07l-1.415-1.415 1.415-1.414zm6.718 6.011l-1.414-1.414a5 5 0 1 0-7.071-7.071l-.354.354a5 5 0 0 0 0 7.07l1.415 1.415-1.415 1.414-1.414-1.414a7 7 0 0 1 0-9.9l.354-.353a7 7 0 0 1 9.9 9.9z" />
                                 </svg>
                         </button>
 
@@ -70,7 +76,7 @@
                                 class="flex items-center justify-center w-8 h-8 -ml-2 rounded hover:bg-gray-300 hover:text-gray-700"
                                 @click="editor.chain().focus().setParagraph().run()"
                                 :class="{ 'is-active bg-gray-200 text-gray-700': editor.isActive('paragraph') }">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                                <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
                                         <path fill="none" d="M0 0h24v24H0z" />
                                         <path d="M12 6v15h-2v-5a6 6 0 1 1 0-12h10v2h-3v15h-2V6h-3zm-2 0a4 4 0 1 0 0 8V6z" />
                                 </svg>
@@ -78,10 +84,10 @@
 
                         <!-- Haeder 1 -->
                         <button
-                                class="flex items-center px-3 py-1 bg-gray-200 rounded-lg shadow-xs cursor-pointer hover:bg-gray-500 hover:text-gray-100"
+                                class="flex items-center justify-center w-8 h-8 -ml-2 rounded hover:bg-gray-300 hover:text-gray-700"
                                 @click="editor.chain().focus().toggleHeading({ level: 1 }).run()"
-                                :class="{ 'is-active bg-gray-600 text-white': editor.isActive('heading', { level: 1}) }">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-5 h-5 fill-current">
+                                :class="{ 'is-active bg-gray-200 text-gray-700': editor.isActive('heading', { level: 1}) }">
+                                <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-5 h-5 fill-current">
                                         <path fill="none" d="M0 0H24V24H0z" />
                                         <path d="M13 20h-2v-7H4v7H2V4h2v7h7V4h2v16zm8-12v12h-2v-9.796l-2 .536V8.67L19.5 8H21z" />
                                 </svg>
@@ -89,10 +95,10 @@
 
                         <!-- Haeder 2 -->
                         <button
-                                class="flex items-center px-3 py-1 bg-gray-200 rounded-lg shadow-xs cursor-pointer hover:bg-gray-500 hover:text-gray-100"
+                                class="flex items-center justify-center w-8 h-8 -ml-2 rounded hover:bg-gray-300 hover:text-gray-700"
                                 @click="editor.chain().focus().toggleHeading({ level: 2 }).run()"
-                                :class="{ 'is-active bg-gray-600 text-white': editor.isActive('heading', { level: 2}) }">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                                :class="{ 'is-active bg-gray-200 text-gray-700': editor.isActive('heading', { level: 2}) }">
+                                <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
                                         <path fill="none" d="M0 0H24V24H0z" />
                                         <path d="M4 4v7h7V4h2v16h-2v-7H4v7H2V4h2zm14.5 4c2.071 0 3.75 1.679 3.75 3.75 0 .857-.288 1.648-.772 2.28l-.148.18L18.034 18H22v2h-7v-1.556l4.82-5.546c.268-.307.43-.709.43-1.148 0-.966-.784-1.75-1.75-1.75-.918 0-1.671.707-1.744 1.606l-.006.144h-2C14.75 9.679 16.429 8 18.5 8z" />
                                 </svg>
@@ -144,10 +150,10 @@
 
                         <!-- Bullet List -->
                         <button
-                                class="flex items-center px-3 py-1 bg-gray-200 rounded-lg shadow-xs cursor-pointer hover:bg-gray-500 hover:text-gray-100"
+                                class="flex items-center justify-center w-8 h-8 -ml-2 rounded hover:bg-gray-300 hover:text-gray-700"
                                 @click="editor.chain().focus().toggleBulletList().run()"
-                                :class="{ 'is-active bg-gray-600 text-white': editor.isActive('bulletList') }">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                                :class="{ 'is-active bg-gray-200 text-gray-700': editor.isActive('bulletList') }">
+                                <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
                                         <path fill="none" d="M0 0h24v24H0z" />
                                         <path d="M8 4h13v2H8V4zM4.5 6.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm0 7a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm0 6.9a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zM8 11h13v2H8v-2zm0 7h13v2H8v-2z" />
                                 </svg>
