@@ -57,11 +57,12 @@ window.setupEditor = function() {
             this.editor.chain().focus().extendMarkRange('link').setLink({ href: url }).run();
         },
 
+        // // Set Image Link ------------------------------------------------------------------
         // addImage() {
         //     const url = window.prompt('URL')
       
         //     if (url) {
-        //       this.editor.chain().focus().setImage({ src: url }).run()
+        //       this.editor.chain().focus().setImage({ src: url }).run();
         //     }
         // },
     }
