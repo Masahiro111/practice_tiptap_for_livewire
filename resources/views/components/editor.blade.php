@@ -207,6 +207,7 @@
         <!-- The editor -->
         <div
              x-ref="editor"
+             @drop="options.enableImageUpload && handleFileDrop($event)"
              class="prose py-2 px-3 rounded-lg border-2 border-gray-300 mt-1 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:border-transparent">
         </div>
 </div>

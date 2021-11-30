@@ -1,4 +1,4 @@
-
+import Alpine from 'alpinejs'
 import { Editor } from '@tiptap/core'
 import StarterKit from '@tiptap/starter-kit'
 import Image from '@tiptap/extension-image'
@@ -6,6 +6,13 @@ import Link from '@tiptap/extension-link'
 
 window.setupEditor = function() {
     return {
+        options: {
+            enableImageUpload: true,
+            // enableLinks: true,
+            maxSize: 1000,
+            // generateImageUploadConfigUrl: '/laravel-tiptap/generate-image-upload-config',
+            // ...userOptions,
+        },
         editor: null,
         init(element) {
             this.editor = new Editor({
@@ -55,6 +62,91 @@ window.setupEditor = function() {
       
             // update link
             this.editor.chain().focus().extendMarkRange('link').setLink({ href: url }).run();
+        },
+
+        // Image upload Handle
+        async handleFileDrop(event) {
+            alert('handleImage');
+            // event.stopPropagation()
+            // event.preventDefault()
+    
+            // if (!event.dataTransfer) return
+    
+            // const editor = Alpine.raw(this.editor) 
+            // const coordinates = editor.view.posAtCoords({ left: event.clientX, top: event.clientY })
+    
+            // for await (const file of Array.from(event.dataTransfer.files)) {
+            //     if (! file.type.startsWith('image/')) {
+            //         return
+            //     }
+    
+            //     await this.handleUpload(file, coordinates.pos)
+            // }
+        },
+
+        async handleUpload(file, position) {
+            // const imageUploadConfig = await this.getImageUploadConfig()
+    
+            const formData = new FormData()
+            for (const [key, value] of Object.entries(imageUploadConfig.uploadUrlFormData)) {
+                formData.set(key, value)
+            }
+
+            alert('handleUpload');
+    
+        //     // resize our image
+        //     const resizer = ImageBlobReduce()
+        //     const resizedFile = await resizer.toBlob(file, {
+        //         max: this.options.maxSize,
+        //     })
+    
+        //     formData.set('Content-Type', file.type)
+        //     formData.set('key', `${imageUploadConfig.uploadKeyPrefix}/${file.name}`)
+        //     formData.append('file', resizedFile)
+    
+        //     const uploadResponse = await typedFetch(imageUploadConfig.uploadUrl, {
+        //         method: 'post',
+        //         body: formData,
+        //     })
+    
+        //     if (uploadResponse.status !== 201) {
+        //         throw 'something went wrong while uploading the image'
+        //     }
+    
+        //     const imageUrl = `${imageUploadConfig.downloadUrlPrefix}${file.name}`
+    
+        //     const editor = Alpine.raw(this.editor) 
+    
+        //     const node = editor.schema.nodes.image.create({
+        //         src: imageUrl,
+        //     })
+    
+        //     const insertTransaction = editor.view.state.tr.insert(
+        //         position ?? editor.view.state.selection.anchor,
+        //         node
+        //     )
+    
+        //     editor.view.dispatch(insertTransaction)
+    
+        //     const endPos = editor.state.selection.$to.after() - 1
+        //     const resolvedPos = editor.state.doc.resolve(endPos)
+        //     const moveCursorTransaction = editor.view.state.tr.setSelection(new TextSelection(resolvedPos))
+    
+        //     editor.view.dispatch(moveCursorTransaction.scrollIntoView())
+        },
+    
+        removeImage() {
+            alert('removeImage');
+            // const state = Alpine.raw(this.editor).state
+            // const view = Alpine.raw(this.editor).view
+            // const transaction = state.tr
+            // const pos = state.selection.$anchor.pos
+    
+            // const nodeSize = state.selection.node.nodeSize
+    
+            // transaction.delete(pos, pos + nodeSize)
+    
+            // view.dispatch(transaction)
         },
 
         // // Set Image Link ------------------------------------------------------------------
