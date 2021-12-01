@@ -25,7 +25,7 @@
                         <!-- Image -->
                         <label
                                class="flex items-center justify-center w-8 h-8 -ml-2 rounded hover:bg-gray-300 hover:text-gray-700 cursor-pointer"
-                               @click="editor.chain().toggleBold().focus().run()"
+                               @click="editor.chain().toggleImage().focus().run()"
                                :class="{ 'is-active bg-gray-200 text-gray-700': editor.isActive('image') }">
                                 <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
                                         <path fill="none" d="M0 0h24v24H0z" />
@@ -34,6 +34,17 @@
                                 <!-- <input type="file" class="hidden" onchange=""> -->
                                 <input type="file" class="hidden" accept="image/*" multiple x-ref="picker" @change="handleFileSelect">
                         </label>
+
+                        <!-- Image2 -->
+                        <button
+                                class="flex items-center justify-center w-8 h-8 -ml-2 rounded hover:bg-gray-300 hover:text-gray-700"
+                                @click="addImage"
+                                :class="{ 'is-active bg-gray-200 text-gray-700': editor.isActive('image') }">
+                                <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                                        <path fill="none" d="M0 0h24v24H0z" />
+                                        <path d="M4.828 21l-.02.02-.021-.02H2.992A.993.993 0 0 1 2 20.007V3.993A1 1 0 0 1 2.992 3h18.016c.548 0 .992.445.992.993v16.014a1 1 0 0 1-.992.993H4.828zM20 15V5H4v14L14 9l6 6zm0 2.828l-6-6L6.828 19H20v-1.172zM8 11a2 2 0 1 1 0-4 2 2 0 0 1 0 4z" />
+                                </svg>
+                        </button>
 
                         <!-- Orderd List -->
                         <button

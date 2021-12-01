@@ -1,8 +1,18 @@
-import Alpine from 'alpinejs'
 import { Editor } from '@tiptap/core'
 import StarterKit from '@tiptap/starter-kit'
 import Image from '@tiptap/extension-image'
 import Link from '@tiptap/extension-link'
+import Paragraph from '@tiptap/extension-paragraph'
+
+const CustomNode = Editor.create({
+    name: 'customNode',
+  
+    // Your code goes here.
+  })
+
+const CustomParagraph = Paragraph.extend({
+    // draggable: true,
+});
 
 window.setupEditor = function() {
     return {
@@ -67,13 +77,20 @@ window.setupEditor = function() {
         // Image upload Handle
         async handleFileDrop(event) {
             alert('handleImage');
-            // event.stopPropagation()
-            // event.preventDefault()
+            alert('handleImage2');
+            // alert(event);
+            event.stopPropagation()
+            event.preventDefault()
     
-            // if (!event.dataTransfer) return
-    
+            if (!event.dataTransfer){
+                return
+            }
+   
             // const editor = Alpine.raw(this.editor) 
             // const coordinates = editor.view.posAtCoords({ left: event.clientX, top: event.clientY })
+
+            alert('left event.clientX = ' +  event.clientX + ' top event.clientY = ' +  event.clientY  );
+
     
             // for await (const file of Array.from(event.dataTransfer.files)) {
             //     if (! file.type.startsWith('image/')) {
@@ -149,13 +166,13 @@ window.setupEditor = function() {
             // view.dispatch(transaction)
         },
 
-        // // Set Image Link ------------------------------------------------------------------
-        // addImage() {
-        //     const url = window.prompt('URL')
+        // Set Image Link ------------------------------------------------------------------
+        addImage() {
+            const url = window.prompt('URL')
       
-        //     if (url) {
-        //       this.editor.chain().focus().setImage({ src: url }).run();
-        //     }
-        // },
+            if (url) {
+              this.editor.chain().focus().setImage({ src: url }).run();
+            }
+        },
     }
 }

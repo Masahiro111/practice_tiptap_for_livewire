@@ -9845,12 +9845,23 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var alpinejs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! alpinejs */ "./node_modules/alpinejs/dist/alpine.js");
-/* harmony import */ var alpinejs__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(alpinejs__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _tiptap_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @tiptap/core */ "./node_modules/@tiptap/core/dist/tiptap-core.esm.js");
-/* harmony import */ var _tiptap_starter_kit__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @tiptap/starter-kit */ "./node_modules/@tiptap/starter-kit/dist/tiptap-starter-kit.esm.js");
-/* harmony import */ var _tiptap_extension_image__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @tiptap/extension-image */ "./node_modules/@tiptap/extension-image/dist/tiptap-extension-image.esm.js");
-/* harmony import */ var _tiptap_extension_link__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @tiptap/extension-link */ "./node_modules/@tiptap/extension-link/dist/tiptap-extension-link.esm.js");
+/* harmony import */ var _tiptap_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @tiptap/core */ "./node_modules/@tiptap/core/dist/tiptap-core.esm.js");
+/* harmony import */ var _tiptap_starter_kit__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @tiptap/starter-kit */ "./node_modules/@tiptap/starter-kit/dist/tiptap-starter-kit.esm.js");
+/* harmony import */ var _tiptap_extension_image__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @tiptap/extension-image */ "./node_modules/@tiptap/extension-image/dist/tiptap-extension-image.esm.js");
+/* harmony import */ var _tiptap_extension_link__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @tiptap/extension-link */ "./node_modules/@tiptap/extension-link/dist/tiptap-extension-link.esm.js");
+/* harmony import */ var _tiptap_extension_paragraph__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @tiptap/extension-paragraph */ "./node_modules/@tiptap/extension-paragraph/dist/tiptap-extension-paragraph.esm.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -9862,6 +9873,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 
+var CustomParagraph = _tiptap_extension_paragraph__WEBPACK_IMPORTED_MODULE_5__["default"].extend({// draggable: true,
+});
 
 window.setupEditor = function () {
   return {
@@ -9876,7 +9889,7 @@ window.setupEditor = function () {
     init: function init(element) {
       var _this = this;
 
-      this.editor = new _tiptap_core__WEBPACK_IMPORTED_MODULE_2__.Editor({
+      this.editor = new _tiptap_core__WEBPACK_IMPORTED_MODULE_1__.Editor({
         element: element,
         content: {
           "type": "doc",
@@ -10130,7 +10143,7 @@ window.setupEditor = function () {
         // editorProps: {
         //     class: 'prose prose-sm sm:prose lg:prose-lg xl:prose-2xl mx-auto focus:outline-none',
         // },
-        extensions: [_tiptap_starter_kit__WEBPACK_IMPORTED_MODULE_3__["default"], _tiptap_extension_image__WEBPACK_IMPORTED_MODULE_4__["default"], _tiptap_extension_link__WEBPACK_IMPORTED_MODULE_5__["default"].configure({
+        extensions: [_tiptap_starter_kit__WEBPACK_IMPORTED_MODULE_2__["default"], _tiptap_extension_image__WEBPACK_IMPORTED_MODULE_3__["default"], _tiptap_extension_link__WEBPACK_IMPORTED_MODULE_4__["default"].configure({
           HTMLAttributes: {
             target: '_blank',
             rel: 'noopener',
@@ -10175,19 +10188,30 @@ window.setupEditor = function () {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                alert('handleImage'); // event.stopPropagation()
-                // event.preventDefault()
-                // if (!event.dataTransfer) return
+                alert('handleImage');
+                alert('handleImage2'); // alert(event);
+
+                event.stopPropagation();
+                event.preventDefault();
+
+                if (event.dataTransfer) {
+                  _context.next = 6;
+                  break;
+                }
+
+                return _context.abrupt("return");
+
+              case 6:
                 // const editor = Alpine.raw(this.editor) 
                 // const coordinates = editor.view.posAtCoords({ left: event.clientX, top: event.clientY })
-                // for await (const file of Array.from(event.dataTransfer.files)) {
+                alert('left event.clientX = ' + event.clientX + ' top event.clientY = ' + event.clientY); // for await (const file of Array.from(event.dataTransfer.files)) {
                 //     if (! file.type.startsWith('image/')) {
                 //         return
                 //     }
                 //     await this.handleUpload(file, coordinates.pos)
                 // }
 
-              case 1:
+              case 7:
               case "end":
                 return _context.stop();
             }
@@ -10197,16 +10221,21 @@ window.setupEditor = function () {
     },
     handleUpload: function handleUpload(file, position) {
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
+        var formData, _i, _Object$entries, _Object$entries$_i, key, value;
+
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                alert('handleUpload'); //     // const imageUploadConfig = await this.getImageUploadConfig()
-                //     const formData = new FormData()
-                //     for (const [key, value] of Object.entries(imageUploadConfig.uploadUrlFormData)) {
-                //         formData.set(key, value)
-                //     }
-                //     // resize our image
+                // const imageUploadConfig = await this.getImageUploadConfig()
+                formData = new FormData();
+
+                for (_i = 0, _Object$entries = Object.entries(imageUploadConfig.uploadUrlFormData); _i < _Object$entries.length; _i++) {
+                  _Object$entries$_i = _slicedToArray(_Object$entries[_i], 2), key = _Object$entries$_i[0], value = _Object$entries$_i[1];
+                  formData.set(key, value);
+                }
+
+                alert('handleUpload'); //     // resize our image
                 //     const resizer = ImageBlobReduce()
                 //     const resizedFile = await resizer.toBlob(file, {
                 //         max: this.options.maxSize,
@@ -10236,7 +10265,7 @@ window.setupEditor = function () {
                 //     const moveCursorTransaction = editor.view.state.tr.setSelection(new TextSelection(resolvedPos))
                 //     editor.view.dispatch(moveCursorTransaction.scrollIntoView())
 
-              case 1:
+              case 3:
               case "end":
                 return _context2.stop();
             }
@@ -10252,14 +10281,17 @@ window.setupEditor = function () {
       // const nodeSize = state.selection.node.nodeSize
       // transaction.delete(pos, pos + nodeSize)
       // view.dispatch(transaction)
-    } // // Set Image Link ------------------------------------------------------------------
-    // addImage() {
-    //     const url = window.prompt('URL')
-    //     if (url) {
-    //       this.editor.chain().focus().setImage({ src: url }).run();
-    //     }
-    // },
+    },
+    // Set Image Link ------------------------------------------------------------------
+    addImage: function addImage() {
+      var url = window.prompt('URL');
 
+      if (url) {
+        this.editor.chain().focus().setImage({
+          src: url
+        }).run();
+      }
+    }
   };
 };
 
