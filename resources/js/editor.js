@@ -1,17 +1,14 @@
-import { Editor } from '@tiptap/core'
+import { Editor , Mark } from '@tiptap/core'
 import StarterKit from '@tiptap/starter-kit'
 import Image from '@tiptap/extension-image'
 import Link from '@tiptap/extension-link'
 import Paragraph from '@tiptap/extension-paragraph'
 
-const CustomNode = Editor.create({
-    name: 'customNode',
+// tiptap custom extension
+const CustomMark = Mark.create({
+    name: 'customMark',
   
     // Your code goes here.
-  })
-
-const CustomParagraph = Paragraph.extend({
-    // draggable: true,
 });
 
 window.setupEditor = function() {
@@ -35,6 +32,7 @@ window.setupEditor = function() {
                 extensions: [
                     StarterKit,
                     Image,
+                    CustomMark,
                     Link.configure({
                         HTMLAttributes: { 
                             target: '_blank',

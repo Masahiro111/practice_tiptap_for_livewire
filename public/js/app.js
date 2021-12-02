@@ -9872,8 +9872,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 
+ // tiptap custom extension
 
-var CustomParagraph = _tiptap_extension_paragraph__WEBPACK_IMPORTED_MODULE_5__["default"].extend({// draggable: true,
+var CustomMark = _tiptap_core__WEBPACK_IMPORTED_MODULE_1__.Mark.create({
+  name: 'customMark' // Your code goes here.
+
 });
 
 window.setupEditor = function () {
@@ -10143,7 +10146,7 @@ window.setupEditor = function () {
         // editorProps: {
         //     class: 'prose prose-sm sm:prose lg:prose-lg xl:prose-2xl mx-auto focus:outline-none',
         // },
-        extensions: [_tiptap_starter_kit__WEBPACK_IMPORTED_MODULE_2__["default"], _tiptap_extension_image__WEBPACK_IMPORTED_MODULE_3__["default"], _tiptap_extension_link__WEBPACK_IMPORTED_MODULE_4__["default"].configure({
+        extensions: [_tiptap_starter_kit__WEBPACK_IMPORTED_MODULE_2__["default"], _tiptap_extension_image__WEBPACK_IMPORTED_MODULE_3__["default"], CustomMark, _tiptap_extension_link__WEBPACK_IMPORTED_MODULE_4__["default"].configure({
           HTMLAttributes: {
             target: '_blank',
             rel: 'noopener',
