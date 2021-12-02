@@ -1,13 +1,37 @@
-import { Editor , Mark } from '@tiptap/core'
+import { Editor , Node , mergeAttributes } from '@tiptap/core'
 import StarterKit from '@tiptap/starter-kit'
 import Image from '@tiptap/extension-image'
 import Link from '@tiptap/extension-link'
-import Paragraph from '@tiptap/extension-paragraph'
 
 // tiptap custom extension
-const CustomMark = Mark.create({
-    name: 'customMark',
+const Divtest = Node.create({
+    name: 'divtest',
   
+    // Your code goes here.
+    priority: 1000,
+    addOptions() {
+        return {
+            HTMLAttributes: {},
+        }
+    },
+    group: 'block',
+    content: 'inline*',
+    parseHTML() {
+        return [
+            { tag: 'div' },
+            { class: 'line-through'},
+        ]
+    },
+    renderHTML({ HTMLAttributes }) {
+        return ['div', mergeAttributes(this.options.HTMLAttributes, HTMLAttributes), 0];
+    },
+    addCommands() {
+        return {
+            setDivtest: () => ({ commands }) => {
+                return commands.setNode('divtest');
+            },
+        }
+    },
     // Your code goes here.
 });
 
@@ -32,7 +56,7 @@ window.setupEditor = function() {
                 extensions: [
                     StarterKit,
                     Image,
-                    CustomMark,
+                    Divtest,
                     Link.configure({
                         HTMLAttributes: { 
                             target: '_blank',

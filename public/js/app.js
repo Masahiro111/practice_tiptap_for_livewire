@@ -9849,7 +9849,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _tiptap_starter_kit__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @tiptap/starter-kit */ "./node_modules/@tiptap/starter-kit/dist/tiptap-starter-kit.esm.js");
 /* harmony import */ var _tiptap_extension_image__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @tiptap/extension-image */ "./node_modules/@tiptap/extension-image/dist/tiptap-extension-image.esm.js");
 /* harmony import */ var _tiptap_extension_link__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @tiptap/extension-link */ "./node_modules/@tiptap/extension-link/dist/tiptap-extension-link.esm.js");
-/* harmony import */ var _tiptap_extension_paragraph__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @tiptap/extension-paragraph */ "./node_modules/@tiptap/extension-paragraph/dist/tiptap-extension-paragraph.esm.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -9871,11 +9870,40 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 
-
  // tiptap custom extension
 
-var CustomMark = _tiptap_core__WEBPACK_IMPORTED_MODULE_1__.Mark.create({
-  name: 'customMark' // Your code goes here.
+var Divtest = _tiptap_core__WEBPACK_IMPORTED_MODULE_1__.Node.create({
+  name: 'divtest',
+  // Your code goes here.
+  priority: 1000,
+  addOptions: function addOptions() {
+    return {
+      HTMLAttributes: {}
+    };
+  },
+  group: 'block',
+  content: 'inline*',
+  parseHTML: function parseHTML() {
+    return [{
+      tag: 'div'
+    }, {
+      "class": 'line-through'
+    }];
+  },
+  renderHTML: function renderHTML(_ref) {
+    var HTMLAttributes = _ref.HTMLAttributes;
+    return ['div', (0,_tiptap_core__WEBPACK_IMPORTED_MODULE_1__.mergeAttributes)(this.options.HTMLAttributes, HTMLAttributes), 0];
+  },
+  addCommands: function addCommands() {
+    return {
+      setDivtest: function setDivtest() {
+        return function (_ref2) {
+          var commands = _ref2.commands;
+          return commands.setNode('divtest');
+        };
+      }
+    };
+  } // Your code goes here.
 
 });
 
@@ -10146,7 +10174,7 @@ window.setupEditor = function () {
         // editorProps: {
         //     class: 'prose prose-sm sm:prose lg:prose-lg xl:prose-2xl mx-auto focus:outline-none',
         // },
-        extensions: [_tiptap_starter_kit__WEBPACK_IMPORTED_MODULE_2__["default"], _tiptap_extension_image__WEBPACK_IMPORTED_MODULE_3__["default"], CustomMark, _tiptap_extension_link__WEBPACK_IMPORTED_MODULE_4__["default"].configure({
+        extensions: [_tiptap_starter_kit__WEBPACK_IMPORTED_MODULE_2__["default"], _tiptap_extension_image__WEBPACK_IMPORTED_MODULE_3__["default"], Divtest, _tiptap_extension_link__WEBPACK_IMPORTED_MODULE_4__["default"].configure({
           HTMLAttributes: {
             target: '_blank',
             rel: 'noopener',
@@ -10155,8 +10183,8 @@ window.setupEditor = function () {
           openOnClick: false
         })],
         editable: true,
-        onUpdate: function onUpdate(_ref) {
-          var editor = _ref.editor;
+        onUpdate: function onUpdate(_ref3) {
+          var editor = _ref3.editor;
           _this.content = JSON.stringify(editor.getJSON());
         },
         onSelectionUpdate: function onSelectionUpdate() {
