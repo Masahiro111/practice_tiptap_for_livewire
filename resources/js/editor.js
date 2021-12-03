@@ -3,12 +3,40 @@ import StarterKit from '@tiptap/starter-kit'
 import Image from '@tiptap/extension-image'
 import Link from '@tiptap/extension-link'
 
+// starter kit
+// Included extensions
+// 
+// # Nodes
+//     Blockquote
+//     BulletList
+//     CodeBlock
+//     Document
+//     HardBreak
+//     Heading
+//     HorizontalRule
+//     ListItem
+//     OrderedList
+//     Paragraph
+//     Text
+// 
+// # Marks
+//     Bold
+//     Code
+//     Italic
+//     Strike
+// 
+// # Extensions
+//     Dropcursor
+//     Gapcursor
+//     History
+
 // tiptap custom extension
 const Divtest = Node.create({
+    // 拡張名を決めます
     name: 'divtest',
   
-    // Your code goes here.
-    priority: 1000,
+    // 拡張コードを記入します
+    priority: 1000, // 優先度の記入
     addOptions() {
         return {
             HTMLAttributes: {},
