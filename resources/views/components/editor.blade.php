@@ -11,36 +11,6 @@
     <!-- The Controls -->
     <template x-if="editor">
 
-        <div class="pb-5 border-b border-gray-200 sm:pb-0">
-            <div class="mt-3 sm:mt-4">
-                <div class="sm:hidden">
-                    <label for="current-tab" class="sr-only">Select a tab</label>
-                    <select id="current-tab" name="current-tab" class="block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
-                        <option selected>Home</option>
-                        <option>Template</option>
-                        <option>Script</option>
-                        <option>All</option>
-                    </select>
-                </div>
-                <div class="hidden sm:block">
-                    <nav class="-mb-px flex justify-center space-x-8">
-                        <a href="#" class="border-indigo-500 text-indigo-600 whitespace-nowrap pb-4 px-1 border-b-2 font-medium text-sm" aria-current="page">
-                            Home
-                        </a>
-                        <a href="#" class="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap pb-4 px-1 border-b-2 font-medium text-sm">
-                            Template
-                        </a>
-                        <a href="#" class="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap pb-4 px-1 border-b-2 font-medium text-sm">
-                            Script
-                        </a>
-                        <a href="#" class="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap pb-4 px-1 border-b-2 font-medium text-sm">
-                            All
-                        </a>
-                    </nav>
-                </div>
-            </div>
-        </div>
-
         <div class="flex items-center justify-center p-4 space-x-1 menu">
 
             <!-- Divtest -->
