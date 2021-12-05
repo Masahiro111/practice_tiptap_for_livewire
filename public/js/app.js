@@ -11512,6 +11512,228 @@ const Strike = _tiptap_core__WEBPACK_IMPORTED_MODULE_0__.Mark.create({
 
 /***/ }),
 
+/***/ "./node_modules/@tiptap/extension-task-item/dist/tiptap-extension-task-item.esm.js":
+/*!*****************************************************************************************!*\
+  !*** ./node_modules/@tiptap/extension-task-item/dist/tiptap-extension-task-item.esm.js ***!
+  \*****************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "TaskItem": () => (/* binding */ TaskItem),
+/* harmony export */   "default": () => (/* binding */ TaskItem),
+/* harmony export */   "inputRegex": () => (/* binding */ inputRegex)
+/* harmony export */ });
+/* harmony import */ var _tiptap_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @tiptap/core */ "./node_modules/@tiptap/core/dist/tiptap-core.esm.js");
+
+
+const inputRegex = /^\s*(\[([ |x])\])\s$/;
+const TaskItem = _tiptap_core__WEBPACK_IMPORTED_MODULE_0__.Node.create({
+    name: 'taskItem',
+    addOptions() {
+        return {
+            nested: false,
+            HTMLAttributes: {},
+        };
+    },
+    content() {
+        return this.options.nested ? 'paragraph block*' : 'paragraph+';
+    },
+    defining: true,
+    addAttributes() {
+        return {
+            checked: {
+                default: false,
+                keepOnSplit: false,
+                parseHTML: element => element.getAttribute('data-checked') === 'true',
+                renderHTML: attributes => ({
+                    'data-checked': attributes.checked,
+                }),
+            },
+        };
+    },
+    parseHTML() {
+        return [
+            {
+                tag: `li[data-type="${this.name}"]`,
+                priority: 51,
+            },
+        ];
+    },
+    renderHTML({ node, HTMLAttributes }) {
+        return [
+            'li',
+            (0,_tiptap_core__WEBPACK_IMPORTED_MODULE_0__.mergeAttributes)(this.options.HTMLAttributes, HTMLAttributes, { 'data-type': this.name }),
+            [
+                'label',
+                [
+                    'input',
+                    {
+                        type: 'checkbox',
+                        checked: node.attrs.checked
+                            ? 'checked'
+                            : null,
+                    },
+                ],
+                ['span'],
+            ],
+            [
+                'div',
+                0,
+            ],
+        ];
+    },
+    addKeyboardShortcuts() {
+        const shortcuts = {
+            Enter: () => this.editor.commands.splitListItem(this.name),
+            'Shift-Tab': () => this.editor.commands.liftListItem(this.name),
+        };
+        if (!this.options.nested) {
+            return shortcuts;
+        }
+        return {
+            ...shortcuts,
+            Tab: () => this.editor.commands.sinkListItem(this.name),
+        };
+    },
+    addNodeView() {
+        return ({ node, HTMLAttributes, getPos, editor, }) => {
+            const listItem = document.createElement('li');
+            const checkboxWrapper = document.createElement('label');
+            const checkboxStyler = document.createElement('span');
+            const checkbox = document.createElement('input');
+            const content = document.createElement('div');
+            checkboxWrapper.contentEditable = 'false';
+            checkbox.type = 'checkbox';
+            checkbox.addEventListener('change', event => {
+                // if the editor isn’t editable
+                // we have to undo the latest change
+                if (!editor.isEditable) {
+                    checkbox.checked = !checkbox.checked;
+                    return;
+                }
+                const { checked } = event.target;
+                if (editor.isEditable && typeof getPos === 'function') {
+                    editor
+                        .chain()
+                        .focus(undefined, { scrollIntoView: false })
+                        .command(({ tr }) => {
+                        tr.setNodeMarkup(getPos(), undefined, {
+                            checked,
+                        });
+                        return true;
+                    })
+                        .run();
+                }
+            });
+            Object.entries(this.options.HTMLAttributes).forEach(([key, value]) => {
+                listItem.setAttribute(key, value);
+            });
+            listItem.dataset.checked = node.attrs.checked;
+            if (node.attrs.checked) {
+                checkbox.setAttribute('checked', 'checked');
+            }
+            checkboxWrapper.append(checkbox, checkboxStyler);
+            listItem.append(checkboxWrapper, content);
+            Object
+                .entries(HTMLAttributes)
+                .forEach(([key, value]) => {
+                listItem.setAttribute(key, value);
+            });
+            return {
+                dom: listItem,
+                contentDOM: content,
+                update: updatedNode => {
+                    if (updatedNode.type !== this.type) {
+                        return false;
+                    }
+                    listItem.dataset.checked = updatedNode.attrs.checked;
+                    if (updatedNode.attrs.checked) {
+                        checkbox.setAttribute('checked', 'checked');
+                    }
+                    else {
+                        checkbox.removeAttribute('checked');
+                    }
+                    return true;
+                },
+            };
+        };
+    },
+    addInputRules() {
+        return [
+            (0,_tiptap_core__WEBPACK_IMPORTED_MODULE_0__.wrappingInputRule)({
+                find: inputRegex,
+                type: this.type,
+                getAttributes: match => ({
+                    checked: match[match.length - 1] === 'x',
+                }),
+            }),
+        ];
+    },
+});
+
+
+//# sourceMappingURL=tiptap-extension-task-item.esm.js.map
+
+
+/***/ }),
+
+/***/ "./node_modules/@tiptap/extension-task-list/dist/tiptap-extension-task-list.esm.js":
+/*!*****************************************************************************************!*\
+  !*** ./node_modules/@tiptap/extension-task-list/dist/tiptap-extension-task-list.esm.js ***!
+  \*****************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "TaskList": () => (/* binding */ TaskList),
+/* harmony export */   "default": () => (/* binding */ TaskList)
+/* harmony export */ });
+/* harmony import */ var _tiptap_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @tiptap/core */ "./node_modules/@tiptap/core/dist/tiptap-core.esm.js");
+
+
+const TaskList = _tiptap_core__WEBPACK_IMPORTED_MODULE_0__.Node.create({
+    name: 'taskList',
+    addOptions() {
+        return {
+            HTMLAttributes: {},
+        };
+    },
+    group: 'block list',
+    content: 'taskItem+',
+    parseHTML() {
+        return [
+            {
+                tag: `ul[data-type="${this.name}"]`,
+                priority: 51,
+            },
+        ];
+    },
+    renderHTML({ HTMLAttributes }) {
+        return ['ul', (0,_tiptap_core__WEBPACK_IMPORTED_MODULE_0__.mergeAttributes)(this.options.HTMLAttributes, HTMLAttributes, { 'data-type': this.name }), 0];
+    },
+    addCommands() {
+        return {
+            toggleTaskList: () => ({ commands }) => {
+                return commands.toggleList(this.name, 'taskItem');
+            },
+        };
+    },
+    addKeyboardShortcuts() {
+        return {
+            'Mod-Shift-9': () => this.editor.commands.toggleTaskList(),
+        };
+    },
+});
+
+
+//# sourceMappingURL=tiptap-extension-task-list.esm.js.map
+
+
+/***/ }),
+
 /***/ "./node_modules/@tiptap/extension-text/dist/tiptap-extension-text.esm.js":
 /*!*******************************************************************************!*\
   !*** ./node_modules/@tiptap/extension-text/dist/tiptap-extension-text.esm.js ***!
@@ -15728,6 +15950,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _tiptap_starter_kit__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @tiptap/starter-kit */ "./node_modules/@tiptap/starter-kit/dist/tiptap-starter-kit.esm.js");
 /* harmony import */ var _tiptap_extension_image__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @tiptap/extension-image */ "./node_modules/@tiptap/extension-image/dist/tiptap-extension-image.esm.js");
 /* harmony import */ var _tiptap_extension_link__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @tiptap/extension-link */ "./node_modules/@tiptap/extension-link/dist/tiptap-extension-link.esm.js");
+/* harmony import */ var _tiptap_extension_task_list__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @tiptap/extension-task-list */ "./node_modules/@tiptap/extension-task-list/dist/tiptap-extension-task-list.esm.js");
+/* harmony import */ var _tiptap_extension_task_item__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @tiptap/extension-task-item */ "./node_modules/@tiptap/extension-task-item/dist/tiptap-extension-task-item.esm.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -15745,6 +15969,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+
 
 
 
@@ -15839,6 +16065,115 @@ window.setupEditor = function () {
             "content": [{
               "type": "text",
               "text": "laravStart"
+            }]
+          }, {
+            "type": "paragraph",
+            "content": [{
+              "type": "text",
+              "marks": [{
+                "type": "bold"
+              }],
+              "text": "第１問 （配点 １０）"
+            }, {
+              "type": "hardBreak"
+            }, {
+              "type": "text",
+              "text": "Ａ Your dormitory roommate Julie has sent a text message to your mobile"
+            }, {
+              "type": "hardBreak"
+            }, {
+              "type": "text",
+              "text": "phone with a request."
+            }]
+          }, {
+            "type": "paragraph",
+            "content": [{
+              "type": "text",
+              "marks": [{
+                "type": "bold"
+              }],
+              "text": "Jullie："
+            }, {
+              "type": "text",
+              "text": "Help!!! Last night I saved my history homework on a USB memory stick. I was going to print it in the university library this "
+            }, {
+              "type": "hardBreak"
+            }, {
+              "type": "text",
+              "text": "afternoon, but I forgot to bring the USB with me."
+            }, {
+              "type": "hardBreak"
+            }, {
+              "type": "text",
+              "text": "I need to give a copy to my teacher by 4 p.m. today. Can you bring my USB to the library? "
+            }, {
+              "type": "hardBreak"
+            }, {
+              "type": "text",
+              "text": "I think it’s on top of my history book on my desk. I don’t need the book, just the USB.♡"
+            }]
+          }, {
+            "type": "paragraph",
+            "content": [{
+              "type": "text",
+              "marks": [{
+                "type": "bold"
+              }],
+              "text": "問１"
+            }, {
+              "type": "text",
+              "text": ", What was Julie’s request ?"
+            }]
+          }, {
+            "type": "taskList",
+            "content": [{
+              "type": "taskItem",
+              "attrs": {
+                "checked": true
+              },
+              "content": [{
+                "type": "paragraph",
+                "content": [{
+                  "type": "text",
+                  "text": "To bring her USB memory stick"
+                }]
+              }]
+            }, {
+              "type": "taskItem",
+              "attrs": {
+                "checked": false
+              },
+              "content": [{
+                "type": "paragraph",
+                "content": [{
+                  "type": "text",
+                  "text": "To hand in her history homework"
+                }]
+              }]
+            }, {
+              "type": "taskItem",
+              "attrs": {
+                "checked": false
+              },
+              "content": [{
+                "type": "paragraph",
+                "content": [{
+                  "type": "text",
+                  "text": "To lend her a USB memory stick"
+                }]
+              }]
+            }, {
+              "type": "taskItem",
+              "attrs": {
+                "checked": false
+              },
+              "content": [{
+                "type": "paragraph",
+                "content": [{
+                  "type": "text",
+                  "text": "To print out her history homework"
+                }]
+              }]
             }]
           }, {
             "type": "image",
@@ -16002,7 +16337,13 @@ window.setupEditor = function () {
                 "type": "paragraph",
                 "content": [{
                   "type": "text",
-                  "text": "Clone the repo ` git clone https://github.com/Hujjat/laravStart.git ` "
+                  "text": "Clone the repo "
+                }, {
+                  "type": "text",
+                  "marks": [{
+                    "type": "code"
+                  }],
+                  "text": "git clone https://github.com/Hujjat/laravStart.git"
                 }]
               }]
             }]
@@ -16103,6 +16444,11 @@ window.setupEditor = function () {
           },
           autolink: true,
           openOnClick: false
+        }), _tiptap_extension_task_list__WEBPACK_IMPORTED_MODULE_5__["default"], _tiptap_extension_task_item__WEBPACK_IMPORTED_MODULE_6__["default"].configure({
+          nested: false,
+          HTMLAttributes: {
+            "class": 'task-list'
+          }
         })],
         editable: true,
         onUpdate: function onUpdate(_ref3) {

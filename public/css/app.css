@@ -33212,6 +33212,37 @@ video {
   outline: 3px solid #68CEF8;
 }
 
+ul[data-type=taskList] {
+  list-style: none;
+  padding: 0;
+}
+
+ul[data-type=taskList] p {
+  margin: 0;
+}
+
+ul[data-type=taskList] li.task-list {
+  display: flex;
+  padding-left: 1rem;
+}
+
+ul[data-type=taskList] li.task-list>label {
+  flex: 0 0 auto;
+  margin-right: 0.5rem;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+ul[data-type=taskList] li.task-list>div {
+  flex: 1 1 auto;
+}
+
+ul[data-type=taskList] li.task-list::before {
+  display: none;
+}
+
 @media (min-width: 640px) {
   .sm\:container {
     width: 100%;
