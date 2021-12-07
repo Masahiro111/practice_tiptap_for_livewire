@@ -33,7 +33,8 @@ import TaskItem from '@tiptap/extension-task-item'
 //     History
 
 // tiptap custom extension ====================================
-const Divtest = Node.create({
+
+const Divtest = Node.create({ // -----------------------------------------------------------
     // 拡張名を決めます
     name: 'divtest',
   
@@ -41,7 +42,9 @@ const Divtest = Node.create({
     priority: 1000, // 優先度の記入
     addOptions() {
         return {
-            HTMLAttributes: {},
+            HTMLAttributes: {
+                class: 'text-gray-200',
+            },
         }
     },
     group: 'block',
@@ -49,7 +52,6 @@ const Divtest = Node.create({
     parseHTML() {
         return [
             { tag: 'div' },
-            { class: 'line-through'},
         ]
     },
     renderHTML({ HTMLAttributes }) {
@@ -59,6 +61,40 @@ const Divtest = Node.create({
         return {
             setDivtest: () => ({ commands }) => {
                 return commands.setNode('divtest');
+            },
+        }
+    },
+    // Your code goes here.
+});
+
+const Hintbox = Node.create({ // -----------------------------------------------------------
+    // 拡張名を決めます
+    name: 'hintbox',
+  
+    // 拡張コードを記入します
+    priority: 1000, // 優先度の記入
+    addOptions() {
+        return {
+            HTMLAttributes: {
+                class: 'hint-box bg-green-50 border border-green-300 p-4',
+            },
+        }
+    },
+    group: 'block',
+    content: 'inline*',
+    parseHTML() {
+        return [
+            { tag: 'p' },
+            { class: 'hint-box' },
+        ]
+    },
+    renderHTML({ HTMLAttributes }) {
+        return ['p', mergeAttributes(this.options.HTMLAttributes, HTMLAttributes), 0];
+    },
+    addCommands() {
+        return {
+            setHintbox: () => ({ commands }) => {
+                return commands.setNode('hintbox');
             },
         }
     },
@@ -80,7 +116,7 @@ window.setupEditor = function() {
         init(element) {
             this.editor = new Editor({
                 element: element,
-                content: {"type":"doc","content":[{"type":"heading","attrs":{"level":1},"content":[{"type":"text","text":"laravStart"}]},{"type":"paragraph","content":[{"type":"text","marks":[{"type":"bold"}],"text":"第１問 （配点 １０）"},{"type":"hardBreak"},{"type":"text","text":"Ａ Your dormitory roommate Julie has sent a text message to your mobile"},{"type":"hardBreak"},{"type":"text","text":"phone with a request."}]},{"type":"paragraph","content":[{"type":"text","marks":[{"type":"bold"}],"text":"Jullie："},{"type":"text","text":"Help!!! Last night I saved my history homework on a USB memory stick. I was going to print it in the university library this "},{"type":"hardBreak"},{"type":"text","text":"afternoon, but I forgot to bring the USB with me."},{"type":"hardBreak"},{"type":"text","text":"I need to give a copy to my teacher by 4 p.m. today. Can you bring my USB to the library? "},{"type":"hardBreak"},{"type":"text","text":"I think it’s on top of my history book on my desk. I don’t need the book, just the USB.♡"}]},{"type":"paragraph","content":[{"type":"text","marks":[{"type":"bold"}],"text":"問１"},{"type":"text","text":", What was Julie’s request ?"}]},{"type":"taskList","content":[{"type":"taskItem","attrs":{"checked":true},"content":[{"type":"paragraph","content":[{"type":"text","text":"To bring her USB memory stick"}]}]},{"type":"taskItem","attrs":{"checked":false},"content":[{"type":"paragraph","content":[{"type":"text","text":"To hand in her history homework"}]}]},{"type":"taskItem","attrs":{"checked":false},"content":[{"type":"paragraph","content":[{"type":"text","text":"To lend her a USB memory stick"}]}]},{"type":"taskItem","attrs":{"checked":false},"content":[{"type":"paragraph","content":[{"type":"text","text":"To print out her history homework"}]}]}]},{"type":"image","attrs":{"src":"http://laravel7.localhost/img/img1.jpg","alt":null,"title":null}},{"type":"paragraph","content":[{"type":"text","text":"Starter Admin For "},{"type":"text","marks":[{"type":"link","attrs":{"href":"https://google.com","target":"_blank"}}],"text":"Laravel"},{"type":"text","text":". This repo is based on practical web application development course on youtube. You can watch the videos on how we make this project or just git clone the project and start using. it. "}]},{"type":"heading","attrs":{"level":2},"content":[{"type":"text","text":"Tutorial Description"}]},{"type":"image","attrs":{"src":"http://laravel7.localhost/img/img2.jpg","alt":null,"title":null}},{"type":"paragraph","content":[{"type":"text","marks":[{"type":"link","attrs":{"href":"https://www.youtube.com/playlist?list=PLB4AdipoHpxaHDLIaMdtro1eXnQtl_UvE","target":"_blank"}}],"text":"https://www.youtube.com/playlist?list=PLB4AdipoHpxaHDLIaMdtro1eXnQtl_UvE"}]},{"type":"paragraph","content":[{"type":"text","text":"Let's Build a Multi-Purpose Laravel + Vue Application is out now. In this series, you learn everything you need to know about Building a complete web application with Laravel and Vue js. So, I am so excited that so many of you guys like my content and keep inspiring me to create more videos. My goals is to inspire you to write better code and better applications. "}]},{"type":"paragraph","content":[{"type":"text","marks":[{"type":"bold"}],"text":"Here are the things you will learn in this series and what the repo include out of the box: "}]},{"type":"bulletList","content":[{"type":"listItem","content":[{"type":"paragraph","content":[{"type":"text","text":"How use Vue Router with Laravel * How to Install AdminLTE 3 * How to Use Font Awesome 5 on Laravel * How integrate mailchimp with laravel "}]}]},{"type":"listItem","content":[{"type":"paragraph","content":[{"type":"text","text":"How to use Laravel Socialite * How to Login Using Social Media "}]}]},{"type":"listItem","content":[{"type":"paragraph","content":[{"type":"text","text":"How to Use API in Laravel "}]}]},{"type":"listItem","content":[{"type":"paragraph","content":[{"type":"text","text":"Api Auth with Laravel Passport "}]}]}]},{"type":"bulletList","content":[{"type":"listItem","content":[{"type":"paragraph","content":[{"type":"text","text":"JWT with Laravel Passport and JavaScript Request "}]}]},{"type":"listItem","content":[{"type":"paragraph","content":[{"type":"text","text":"Vue Custom Events * Vue form with Laravel * Relational Database with Laravel "}]}]},{"type":"listItem","content":[{"type":"paragraph","content":[{"type":"text","text":"Axios and Ajax Request * ACL in Laravel * Online Users list * And much more... "}]}]}]},{"type":"heading","attrs":{"level":2},"content":[{"type":"text","text":"Installation"}]},{"type":"paragraph","content":[{"type":"text","text":"It's just like any other Laravel project. Basically here is how you use it for yourself. (it's not completed yet) "}]},{"type":"bulletList","content":[{"type":"listItem","content":[{"type":"paragraph","content":[{"type":"text","text":"Clone the repo "},{"type":"text","marks":[{"type":"code"}],"text":"git clone https://github.com/Hujjat/laravStart.git"}]}]}]},{"type":"bulletList","content":[{"type":"listItem","content":[{"type":"paragraph","content":[{"type":"text","text":"`cd ` to project folder. * Run ` composer install ` "}]}]}]},{"type":"bulletList","content":[{"type":"listItem","content":[{"type":"paragraph","content":[{"type":"text","text":"Save as the `.env.example` to `.env` and set your database information * Run ` php artisan key:generate` to generate the app key "}]}]}]},{"type":"bulletList","content":[{"type":"listItem","content":[{"type":"paragraph","content":[{"type":"text","text":"Run ` npm install ` "}]}]}]},{"type":"bulletList","content":[{"type":"listItem","content":[{"type":"paragraph","content":[{"type":"text","text":"Run ` php artisan migrate ` * Done !!! Enjoy Customizing and building awesome app "}]}]}]},{"type":"heading","attrs":{"level":3},"content":[{"type":"text","text":"Code review"}]},{"type":"codeBlock","attrs":{"language":"js"},"content":[{"type":"text","text":"const a = \"hello\";"}]},{"type":"paragraph","content":[{"type":"text","text":"Create new row is "},{"type":"text","marks":[{"type":"code"}],"text":"Ctrl + Enter"},{"type":"text","text":" "}]},{"type":"paragraph"}]},
+                content: {"type":"doc","content":[{"type":"heading","attrs":{"level":1},"content":[{"type":"text","text":"英語（リーディング）"}]},{"type":"paragraph","content":[{"type":"text","text":"各大問の英文や図表を読み、解答番号 １ ～ ４７ にあてはまるものとして"},{"type":"hardBreak"},{"type":"text","text":"最も適当な選択肢を選びなさい。"}]},{"type":"heading","attrs":{"level":2},"content":[{"type":"text","marks":[{"type":"bold"}],"text":"第１問 （ 配点 １０ ）"}]},{"type":"hintbox","content":[{"type":"text","text":"Ａ Your dormitory roommate Julie has sent a text message to your mobile phone with a request."}]},{"type":"paragraph","content":[{"type":"text","marks":[{"type":"bold"}],"text":"Jullie："},{"type":"text","text":"Help!!! Last night I saved my history homework on a USB memory stick. I was going to print it in the university library this "},{"type":"hardBreak"},{"type":"text","text":"afternoon, but I forgot to bring the USB with me."},{"type":"hardBreak"},{"type":"text","text":"I need to give a copy to my teacher by 4 p.m. today. Can you bring my USB to the library? "},{"type":"hardBreak"},{"type":"text","text":"I think it’s on top of my history book on my desk. I don’t need the book, just the USB.♡"}]},{"type":"paragraph","content":[{"type":"text","marks":[{"type":"bold"}],"text":"問１"},{"type":"text","text":", What was Julie’s request ?"}]},{"type":"taskList","content":[{"type":"taskItem","attrs":{"checked":false},"content":[{"type":"paragraph","content":[{"type":"text","text":"To bring her USB memory stick"}]}]},{"type":"taskItem","attrs":{"checked":false},"content":[{"type":"paragraph","content":[{"type":"text","text":"To hand in her history homework"}]}]},{"type":"taskItem","attrs":{"checked":false},"content":[{"type":"paragraph","content":[{"type":"text","text":"To lend her a USB memory stick"}]}]},{"type":"taskItem","attrs":{"checked":false},"content":[{"type":"paragraph","content":[{"type":"text","text":"To print out her history homework"}]}]}]},{"type":"hintbox","content":[{"type":"text","text":"aaaaaaaaa"}]},{"type":"paragraph","content":[{"type":"text","marks":[{"type":"bold"}],"text":"問２"},{"type":"text","text":", What was Julie’s request ?"}]},{"type":"taskList","content":[{"type":"taskItem","attrs":{"checked":true},"content":[{"type":"paragraph","content":[{"type":"text","text":"To bring her USB memory stick"}]}]},{"type":"taskItem","attrs":{"checked":false},"content":[{"type":"paragraph","content":[{"type":"text","text":"To hand in her history homework"}]}]},{"type":"taskItem","attrs":{"checked":false},"content":[{"type":"paragraph","content":[{"type":"text","text":"To lend her a USB memory stick"}]}]},{"type":"taskItem","attrs":{"checked":false},"content":[{"type":"paragraph","content":[{"type":"text","text":"To print out her history homework"}]}]}]},{"type":"paragraph"},{"type":"paragraph","content":[{"type":"text","marks":[{"type":"bold"}],"text":"問３"},{"type":"text","text":", What was Julie’s request ?"}]},{"type":"taskList","content":[{"type":"taskItem","attrs":{"checked":true},"content":[{"type":"paragraph","content":[{"type":"text","text":"To bring her USB memory stick"}]}]},{"type":"taskItem","attrs":{"checked":false},"content":[{"type":"paragraph","content":[{"type":"text","text":"To hand in her history homework"}]}]},{"type":"taskItem","attrs":{"checked":false},"content":[{"type":"paragraph","content":[{"type":"text","text":"To lend her a USB memory stick"}]}]},{"type":"taskItem","attrs":{"checked":false},"content":[{"type":"paragraph","content":[{"type":"text","text":"To print out her history homework"}]}]}]},{"type":"image","attrs":{"src":"http://laravel7.localhost/img/img1.jpg","alt":null,"title":null}},{"type":"paragraph","content":[{"type":"text","text":"Starter Admin For "},{"type":"text","marks":[{"type":"link","attrs":{"href":"https://google.com","target":"_blank"}}],"text":"Laravel"},{"type":"text","text":". This repo is based on practical web application development course on youtube. You can watch the videos on how we make this project or just git clone the project and start using. it. "}]},{"type":"heading","attrs":{"level":2},"content":[{"type":"text","text":"Tutorial Description"}]},{"type":"image","attrs":{"src":"http://laravel7.localhost/img/img2.jpg","alt":null,"title":null}},{"type":"paragraph","content":[{"type":"text","marks":[{"type":"link","attrs":{"href":"https://www.youtube.com/playlist?list=PLB4AdipoHpxaHDLIaMdtro1eXnQtl_UvE","target":"_blank"}}],"text":"https://www.youtube.com/playlist?list=PLB4AdipoHpxaHDLIaMdtro1eXnQtl_UvE"}]},{"type":"paragraph","content":[{"type":"text","text":"Let's Build a Multi-Purpose Laravel + Vue Application is out now. In this series, you learn everything you need to know about Building a complete web application with Laravel and Vue js. So, I am so excited that so many of you guys like my content and keep inspiring me to create more videos. My goals is to inspire you to write better code and better applications. "}]},{"type":"paragraph","content":[{"type":"text","marks":[{"type":"bold"}],"text":"Here are the things you will learn in this series and what the repo include out of the box: "}]},{"type":"bulletList","content":[{"type":"listItem","content":[{"type":"paragraph","content":[{"type":"text","text":"How use Vue Router with Laravel * How to Install AdminLTE 3 * How to Use Font Awesome 5 on Laravel * How integrate mailchimp with laravel "}]}]},{"type":"listItem","content":[{"type":"paragraph","content":[{"type":"text","text":"How to use Laravel Socialite * How to Login Using Social Media "}]}]},{"type":"listItem","content":[{"type":"paragraph","content":[{"type":"text","text":"How to Use API in Laravel "}]}]},{"type":"listItem","content":[{"type":"paragraph","content":[{"type":"text","text":"Api Auth with Laravel Passport "}]}]}]},{"type":"bulletList","content":[{"type":"listItem","content":[{"type":"paragraph","content":[{"type":"text","text":"JWT with Laravel Passport and JavaScript Request "}]}]},{"type":"listItem","content":[{"type":"paragraph","content":[{"type":"text","text":"Vue Custom Events * Vue form with Laravel * Relational Database with Laravel "}]}]},{"type":"listItem","content":[{"type":"paragraph","content":[{"type":"text","text":"Axios and Ajax Request * ACL in Laravel * Online Users list * And much more... "}]}]}]},{"type":"heading","attrs":{"level":2},"content":[{"type":"text","text":"Installation"}]},{"type":"paragraph","content":[{"type":"text","text":"It's just like any other Laravel project. Basically here is how you use it for yourself. (it's not completed yet) "}]},{"type":"bulletList","content":[{"type":"listItem","content":[{"type":"paragraph","content":[{"type":"text","text":"Clone the repo "},{"type":"text","marks":[{"type":"code"}],"text":"git clone https://github.com/Hujjat/laravStart.git"}]}]}]},{"type":"bulletList","content":[{"type":"listItem","content":[{"type":"paragraph","content":[{"type":"text","text":"`cd ` to project folder. * Run ` composer install ` "}]}]}]},{"type":"bulletList","content":[{"type":"listItem","content":[{"type":"paragraph","content":[{"type":"text","text":"Save as the `.env.example` to `.env` and set your database information * Run ` php artisan key:generate` to generate the app key "}]}]}]},{"type":"bulletList","content":[{"type":"listItem","content":[{"type":"paragraph","content":[{"type":"text","text":"Run ` npm install ` "}]}]}]},{"type":"bulletList","content":[{"type":"listItem","content":[{"type":"paragraph","content":[{"type":"text","text":"Run ` php artisan migrate ` * Done !!! Enjoy Customizing and building awesome app "}]}]}]},{"type":"heading","attrs":{"level":3},"content":[{"type":"text","text":"Code review"}]},{"type":"codeBlock","attrs":{"language":"js"},"content":[{"type":"text","text":"const a = \"hello\";"}]},{"type":"paragraph","content":[{"type":"text","text":"Create new row is "},{"type":"text","marks":[{"type":"code"}],"text":"Ctrl + Enter"},{"type":"text","text":" "}]},{"type":"paragraph"}]},
                 updateAt: Date.now(),
                 // editorProps: {
                 //     class: 'prose prose-sm sm:prose lg:prose-lg xl:prose-2xl mx-auto focus:outline-none',
@@ -89,6 +125,7 @@ window.setupEditor = function() {
                     StarterKit,
                     Image,
                     Divtest,
+                    Hintbox,
                     Link.configure({
                         HTMLAttributes: { 
                             target: '_blank',

@@ -16004,6 +16004,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 // tiptap custom extension ====================================
 
 var Divtest = _tiptap_core__WEBPACK_IMPORTED_MODULE_1__.Node.create({
+  // -----------------------------------------------------------
   // 拡張名を決めます
   name: 'divtest',
   // 拡張コードを記入します
@@ -16011,7 +16012,9 @@ var Divtest = _tiptap_core__WEBPACK_IMPORTED_MODULE_1__.Node.create({
   // 優先度の記入
   addOptions: function addOptions() {
     return {
-      HTMLAttributes: {}
+      HTMLAttributes: {
+        "class": 'text-gray-200'
+      }
     };
   },
   group: 'block',
@@ -16019,8 +16022,6 @@ var Divtest = _tiptap_core__WEBPACK_IMPORTED_MODULE_1__.Node.create({
   parseHTML: function parseHTML() {
     return [{
       tag: 'div'
-    }, {
-      "class": 'line-through'
     }];
   },
   renderHTML: function renderHTML(_ref) {
@@ -16033,6 +16034,45 @@ var Divtest = _tiptap_core__WEBPACK_IMPORTED_MODULE_1__.Node.create({
         return function (_ref2) {
           var commands = _ref2.commands;
           return commands.setNode('divtest');
+        };
+      }
+    };
+  } // Your code goes here.
+
+});
+var Hintbox = _tiptap_core__WEBPACK_IMPORTED_MODULE_1__.Node.create({
+  // -----------------------------------------------------------
+  // 拡張名を決めます
+  name: 'hintbox',
+  // 拡張コードを記入します
+  priority: 1000,
+  // 優先度の記入
+  addOptions: function addOptions() {
+    return {
+      HTMLAttributes: {
+        "class": 'hint-box bg-green-50 border border-green-300 p-4'
+      }
+    };
+  },
+  group: 'block',
+  content: 'inline*',
+  parseHTML: function parseHTML() {
+    return [{
+      tag: 'p'
+    }, {
+      "class": 'hint-box'
+    }];
+  },
+  renderHTML: function renderHTML(_ref3) {
+    var HTMLAttributes = _ref3.HTMLAttributes;
+    return ['p', (0,_tiptap_core__WEBPACK_IMPORTED_MODULE_1__.mergeAttributes)(this.options.HTMLAttributes, HTMLAttributes), 0];
+  },
+  addCommands: function addCommands() {
+    return {
+      setHintbox: function setHintbox() {
+        return function (_ref4) {
+          var commands = _ref4.commands;
+          return commands.setNode('hintbox');
         };
       }
     };
@@ -16064,26 +16104,36 @@ window.setupEditor = function () {
             },
             "content": [{
               "type": "text",
-              "text": "laravStart"
+              "text": "英語（リーディング）"
             }]
           }, {
             "type": "paragraph",
             "content": [{
               "type": "text",
+              "text": "各大問の英文や図表を読み、解答番号 １ ～ ４７ にあてはまるものとして"
+            }, {
+              "type": "hardBreak"
+            }, {
+              "type": "text",
+              "text": "最も適当な選択肢を選びなさい。"
+            }]
+          }, {
+            "type": "heading",
+            "attrs": {
+              "level": 2
+            },
+            "content": [{
+              "type": "text",
               "marks": [{
                 "type": "bold"
               }],
-              "text": "第１問 （配点 １０）"
-            }, {
-              "type": "hardBreak"
-            }, {
+              "text": "第１問 （ 配点 １０ ）"
+            }]
+          }, {
+            "type": "hintbox",
+            "content": [{
               "type": "text",
-              "text": "Ａ Your dormitory roommate Julie has sent a text message to your mobile"
-            }, {
-              "type": "hardBreak"
-            }, {
-              "type": "text",
-              "text": "phone with a request."
+              "text": "Ａ Your dormitory roommate Julie has sent a text message to your mobile phone with a request."
             }]
           }, {
             "type": "paragraph",
@@ -16120,6 +16170,140 @@ window.setupEditor = function () {
                 "type": "bold"
               }],
               "text": "問１"
+            }, {
+              "type": "text",
+              "text": ", What was Julie’s request ?"
+            }]
+          }, {
+            "type": "taskList",
+            "content": [{
+              "type": "taskItem",
+              "attrs": {
+                "checked": false
+              },
+              "content": [{
+                "type": "paragraph",
+                "content": [{
+                  "type": "text",
+                  "text": "To bring her USB memory stick"
+                }]
+              }]
+            }, {
+              "type": "taskItem",
+              "attrs": {
+                "checked": false
+              },
+              "content": [{
+                "type": "paragraph",
+                "content": [{
+                  "type": "text",
+                  "text": "To hand in her history homework"
+                }]
+              }]
+            }, {
+              "type": "taskItem",
+              "attrs": {
+                "checked": false
+              },
+              "content": [{
+                "type": "paragraph",
+                "content": [{
+                  "type": "text",
+                  "text": "To lend her a USB memory stick"
+                }]
+              }]
+            }, {
+              "type": "taskItem",
+              "attrs": {
+                "checked": false
+              },
+              "content": [{
+                "type": "paragraph",
+                "content": [{
+                  "type": "text",
+                  "text": "To print out her history homework"
+                }]
+              }]
+            }]
+          }, {
+            "type": "hintbox",
+            "content": [{
+              "type": "text",
+              "text": "aaaaaaaaa"
+            }]
+          }, {
+            "type": "paragraph",
+            "content": [{
+              "type": "text",
+              "marks": [{
+                "type": "bold"
+              }],
+              "text": "問２"
+            }, {
+              "type": "text",
+              "text": ", What was Julie’s request ?"
+            }]
+          }, {
+            "type": "taskList",
+            "content": [{
+              "type": "taskItem",
+              "attrs": {
+                "checked": true
+              },
+              "content": [{
+                "type": "paragraph",
+                "content": [{
+                  "type": "text",
+                  "text": "To bring her USB memory stick"
+                }]
+              }]
+            }, {
+              "type": "taskItem",
+              "attrs": {
+                "checked": false
+              },
+              "content": [{
+                "type": "paragraph",
+                "content": [{
+                  "type": "text",
+                  "text": "To hand in her history homework"
+                }]
+              }]
+            }, {
+              "type": "taskItem",
+              "attrs": {
+                "checked": false
+              },
+              "content": [{
+                "type": "paragraph",
+                "content": [{
+                  "type": "text",
+                  "text": "To lend her a USB memory stick"
+                }]
+              }]
+            }, {
+              "type": "taskItem",
+              "attrs": {
+                "checked": false
+              },
+              "content": [{
+                "type": "paragraph",
+                "content": [{
+                  "type": "text",
+                  "text": "To print out her history homework"
+                }]
+              }]
+            }]
+          }, {
+            "type": "paragraph"
+          }, {
+            "type": "paragraph",
+            "content": [{
+              "type": "text",
+              "marks": [{
+                "type": "bold"
+              }],
+              "text": "問３"
             }, {
               "type": "text",
               "text": ", What was Julie’s request ?"
@@ -16436,7 +16620,7 @@ window.setupEditor = function () {
         // editorProps: {
         //     class: 'prose prose-sm sm:prose lg:prose-lg xl:prose-2xl mx-auto focus:outline-none',
         // },
-        extensions: [_tiptap_starter_kit__WEBPACK_IMPORTED_MODULE_2__["default"], _tiptap_extension_image__WEBPACK_IMPORTED_MODULE_3__["default"], Divtest, _tiptap_extension_link__WEBPACK_IMPORTED_MODULE_4__["default"].configure({
+        extensions: [_tiptap_starter_kit__WEBPACK_IMPORTED_MODULE_2__["default"], _tiptap_extension_image__WEBPACK_IMPORTED_MODULE_3__["default"], Divtest, Hintbox, _tiptap_extension_link__WEBPACK_IMPORTED_MODULE_4__["default"].configure({
           HTMLAttributes: {
             target: '_blank',
             rel: 'noopener',
@@ -16451,8 +16635,8 @@ window.setupEditor = function () {
           }
         })],
         editable: true,
-        onUpdate: function onUpdate(_ref3) {
-          var editor = _ref3.editor;
+        onUpdate: function onUpdate(_ref5) {
+          var editor = _ref5.editor;
           _this.content = JSON.stringify(editor.getJSON());
         },
         onSelectionUpdate: function onSelectionUpdate() {

@@ -33243,6 +33243,20 @@ ul[data-type=taskList] li.task-list::before {
   display: none;
 }
 
+p.hint-box {
+  position: relative;
+}
+
+p.hint-box::before {
+  content: "hint ! ";
+  top: -1rem;
+  left: -.1rem;
+  position: absolute;
+  background: white;
+  font-weight: bold;
+  color: green;
+}
+
 @media (min-width: 640px) {
   .sm\:container {
     width: 100%;

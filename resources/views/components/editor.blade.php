@@ -11,13 +11,56 @@
     <!-- The Controls -->
     <template x-if="editor">
 
+        <div class="pb-5 border-b border-gray-200 sm:pb-0">
+            <div class="mt-3 sm:mt-4">
+                <div class="sm:hidden">
+                    <label for="current-tab" class="sr-only">Select a tab</label>
+                    <select id="current-tab" name="current-tab" class="block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
+                        <option selected>Home</option>
+                        <option>Template</option>
+                        <option>Script</option>
+                        <option>All</option>
+                    </select>
+                </div>
+                <div class="hidden sm:block">
+                    <nav class="-mb-px flex justify-center space-x-8">
+                        <a href="#" class="border-indigo-500 text-indigo-600 whitespace-nowrap pb-4 px-1 border-b-2 font-medium text-sm" aria-current="page">
+                            Home
+                        </a>
+                        <a href="#" class="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap pb-4 px-1 border-b-2 font-medium text-sm">
+                            Template
+                        </a>
+                        <a href="#" class="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap pb-4 px-1 border-b-2 font-medium text-sm">
+                            Script
+                        </a>
+                        <a href="#" class="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap pb-4 px-1 border-b-2 font-medium text-sm">
+                            All
+                        </a>
+                    </nav>
+                </div>
+            </div>
+        </div>
+
         <div class="flex items-center justify-center p-4 space-x-1 menu">
 
             <!-- Divtest -->
             <button
                     class="flex items-center justify-center w-8 h-8 -ml-2 rounded hover:bg-gray-300 hover:text-gray-700"
                     @click="editor.chain().focus().setDivtest().run()"
-                    :class="{ 'is-active bg-gray-200 text-gray-700': editor.isActive('divtest') }">
+                    :class="{ 'is-active bg-gray-200 text-gray-700': editor.isActive('divtest') }"
+                    title="Divtest">
+                <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                    <path fill="none" d="M0 0h24v24H0z" />
+                    <path d="M17.154 14c.23.516.346 1.09.346 1.72 0 1.342-.524 2.392-1.571 3.147C14.88 19.622 13.433 20 11.586 20c-1.64 0-3.263-.381-4.87-1.144V16.6c1.52.877 3.075 1.316 4.666 1.316 2.551 0 3.83-.732 3.839-2.197a2.21 2.21 0 0 0-.648-1.603l-.12-.117H3v-2h18v2h-3.846zm-4.078-3H7.629a4.086 4.086 0 0 1-.481-.522C6.716 9.92 6.5 9.246 6.5 8.452c0-1.236.466-2.287 1.397-3.153C8.83 4.433 10.271 4 12.222 4c1.471 0 2.879.328 4.222.984v2.152c-1.2-.687-2.515-1.03-3.946-1.03-2.48 0-3.719.782-3.719 2.346 0 .42.218.786.654 1.099.436.313.974.562 1.613.75.62.18 1.297.414 2.03.699z" />
+                </svg>
+            </button>
+
+            <!-- Hint Box -->
+            <button
+                    class="flex items-center justify-center w-8 h-8 -ml-2 rounded hover:bg-gray-300 hover:text-gray-700"
+                    @click="editor.chain().focus().setHintbox().run()"
+                    :class="{ 'is-active bg-gray-200 text-gray-700': editor.isActive('hintbox') }"
+                    title="hintbox">
                 <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
                     <path fill="none" d="M0 0h24v24H0z" />
                     <path d="M17.154 14c.23.516.346 1.09.346 1.72 0 1.342-.524 2.392-1.571 3.147C14.88 19.622 13.433 20 11.586 20c-1.64 0-3.263-.381-4.87-1.144V16.6c1.52.877 3.075 1.316 4.666 1.316 2.551 0 3.83-.732 3.839-2.197a2.21 2.21 0 0 0-.648-1.603l-.12-.117H3v-2h18v2h-3.846zm-4.078-3H7.629a4.086 4.086 0 0 1-.481-.522C6.716 9.92 6.5 9.246 6.5 8.452c0-1.236.466-2.287 1.397-3.153C8.83 4.433 10.271 4 12.222 4c1.471 0 2.879.328 4.222.984v2.152c-1.2-.687-2.515-1.03-3.946-1.03-2.48 0-3.719.782-3.719 2.346 0 .42.218.786.654 1.099.436.313.974.562 1.613.75.62.18 1.297.414 2.03.699z" />
@@ -216,27 +259,6 @@
                     <path fill="none" d="M0 0h24v24H0z" />
                     <path d="M4 3h16a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1zm1 2v14h14V5H5zm6.003 11L6.76 11.757l1.414-1.414 2.829 2.829 5.656-5.657 1.415 1.414L11.003 16z" />
                 </svg>
-            </button>
-
-            <!--  -->
-            <button
-                    @click="editor.chain().focus().splitListItem('taskItem').run()"
-                    :disabled="!editor.can().splitListItem('taskItem')">
-                splitListItem
-            </button>
-
-            <!--  -->
-            <button
-                    @click="editor.chain().focus().sinkListItem('taskItem').run()"
-                    :disabled="!editor.can().sinkListItem('taskItem')">
-                sinkListItem
-            </button>
-
-            <!--  -->
-            <button
-                    @click="editor.chain().focus().liftListItem('taskItem').run()"
-                    :disabled="!editor.can().liftListItem('taskItem')">
-                liftListItem
             </button>
 
             <!-- Undo -->
