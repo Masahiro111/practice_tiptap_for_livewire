@@ -102,6 +102,193 @@ const Hintbox = Node.create({ // -----------------------------------------------
 });
 
 
+// create Radio List
+const RadioList = Node.create({ // -----------------------------------------------------------
+    name: 'radioList',
+    
+    addOptions() {
+        return {
+          HTMLAttributes: {},
+        }
+    },
+    
+    group: 'block list',
+    
+    content: 'radioItem+',
+    
+    parseHTML() {
+        return [
+        {
+            tag: `ul[data-type="${this.name}"]`,
+            priority: 51,
+        },
+        ]
+    },
+    
+    renderHTML({ HTMLAttributes }) {
+        return ['ul', mergeAttributes(this.options.HTMLAttributes, HTMLAttributes, { 'data-type': this.name }), 0]
+    },
+    
+    addCommands() {
+        return {
+          toggleRadioList: () => ({ commands }) => {
+              return commands.toggleList(this.name, 'RadioItem')
+          },
+        }
+    },
+});
+
+// create Radio Item
+const RadioItem = Node.create({ // -----------------------------------------------------------
+
+    name: 'radioItem',
+  
+    addOptions() {
+      return {
+        nested: false,
+        HTMLAttributes: {},
+      }
+    },
+  
+    content() {
+      return this.options.nested ? 'paragraph block*' : 'paragraph+'
+    },
+  
+    defining: true,
+  
+    addAttributes() {
+      return {
+        checked: {
+          default: false,
+          keepOnSplit: false,
+          parseHTML: element => element.getAttribute('data-checked') === 'true',
+          renderHTML: attributes => ({
+            'data-checked': attributes.checked,
+          }),
+        },
+      }
+    },
+  
+    parseHTML() {
+      return [
+        {
+          tag: `li[data-type="${this.name}"]`,
+          priority: 51,
+        },
+      ]
+    },
+  
+    renderHTML({ node, HTMLAttributes }) {
+      return [
+        'li',
+        mergeAttributes(
+          this.options.HTMLAttributes,
+          HTMLAttributes,
+          { 'data-type': this.name },
+        ),
+        [
+          'label',
+          [
+            'input',
+            {
+              type: 'radio',
+              value: 'hello',
+              checked: node.attrs.checked
+                ? 'checked'
+                : null,
+            },
+          ],
+          ['span'],
+        ],
+        [
+          'div',
+          0,
+        ],
+      ]
+    },
+  
+    addNodeView() {
+      return ({
+        node,
+        HTMLAttributes,
+        getPos,
+        editor,
+      }) => {
+        const listItem = document.createElement('li')
+        const radioWrapper = document.createElement('label')
+        const radioStyler = document.createElement('span')
+        const radio = document.createElement('input')
+        const content = document.createElement('div')
+  
+        radioWrapper.contentEditable = 'false'
+        radio.type = 'radio'
+        radio.addEventListener('change', event => {
+          // if the editor isn’t editable
+          // we have to undo the latest change
+          if (!editor.isEditable) {
+            radio.checked = !radio.checked
+  
+            return
+          }
+  
+          const { checked } = event.target
+  
+          if (editor.isEditable && typeof getPos === 'function') {
+            editor
+              .chain()
+              .focus(undefined, { scrollIntoView: false })
+              .command(({ tr }) => {
+                tr.setNodeMarkup(getPos(), undefined, {
+                  checked,
+                })
+  
+                return true
+              })
+              .run()
+          }
+        })
+  
+        Object.entries(this.options.HTMLAttributes).forEach(([key, value]) => {
+          radioItem.setAttribute(key, value)
+        })
+  
+        radioItem.dataset.checked = node.attrs.checked
+        if (node.attrs.checked) {
+          radio.setAttribute('checked', 'checked')
+        }
+  
+        radioWrapper.append(radio, radioStyler)
+        radioItem.append(radioWrapper, content)
+  
+        Object
+          .entries(HTMLAttributes)
+          .forEach(([key, value]) => {
+            radioItem.setAttribute(key, value)
+          })
+  
+        return {
+          dom: radioItem,
+          contentDOM: content,
+          update: updatedNode => {
+            if (updatedNode.type !== this.type) {
+              return false
+            }
+  
+            radioItem.dataset.checked = updatedNode.attrs.checked
+            if (updatedNode.attrs.checked) {
+              radio.setAttribute('checked', 'checked')
+            } else {
+              radio.removeAttribute('checked')
+            }
+  
+            return true
+          },
+        }
+      }
+    }, 
+});
+
+
 //  ===================================================
 window.setupEditor = function() {
     return {

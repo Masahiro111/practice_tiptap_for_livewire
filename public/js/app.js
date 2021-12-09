@@ -15952,6 +15952,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _tiptap_extension_link__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @tiptap/extension-link */ "./node_modules/@tiptap/extension-link/dist/tiptap-extension-link.esm.js");
 /* harmony import */ var _tiptap_extension_task_list__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @tiptap/extension-task-list */ "./node_modules/@tiptap/extension-task-list/dist/tiptap-extension-task-list.esm.js");
 /* harmony import */ var _tiptap_extension_task_item__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @tiptap/extension-task-item */ "./node_modules/@tiptap/extension-task-item/dist/tiptap-extension-task-item.esm.js");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -15963,12 +15969,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
-
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 
 
@@ -16078,6 +16078,170 @@ var Hintbox = _tiptap_core__WEBPACK_IMPORTED_MODULE_1__.Node.create({
     };
   } // Your code goes here.
 
+}); // create Radio List
+
+var RadioList = _tiptap_core__WEBPACK_IMPORTED_MODULE_1__.Node.create({
+  // -----------------------------------------------------------
+  name: 'radioList',
+  addOptions: function addOptions() {
+    return {
+      HTMLAttributes: {}
+    };
+  },
+  group: 'block list',
+  content: 'radioItem+',
+  parseHTML: function parseHTML() {
+    return [{
+      tag: "ul[data-type=\"".concat(this.name, "\"]"),
+      priority: 51
+    }];
+  },
+  renderHTML: function renderHTML(_ref5) {
+    var HTMLAttributes = _ref5.HTMLAttributes;
+    return ['ul', (0,_tiptap_core__WEBPACK_IMPORTED_MODULE_1__.mergeAttributes)(this.options.HTMLAttributes, HTMLAttributes, {
+      'data-type': this.name
+    }), 0];
+  },
+  addCommands: function addCommands() {
+    var _this = this;
+
+    return {
+      toggleRadioList: function toggleRadioList() {
+        return function (_ref6) {
+          var commands = _ref6.commands;
+          return commands.toggleList(_this.name, 'RadioItem');
+        };
+      }
+    };
+  }
+}); // create Radio Item
+
+var RadioItem = _tiptap_core__WEBPACK_IMPORTED_MODULE_1__.Node.create({
+  // -----------------------------------------------------------
+  name: 'radioItem',
+  addOptions: function addOptions() {
+    return {
+      nested: false,
+      HTMLAttributes: {}
+    };
+  },
+  content: function content() {
+    return this.options.nested ? 'paragraph block*' : 'paragraph+';
+  },
+  defining: true,
+  addAttributes: function addAttributes() {
+    return {
+      checked: {
+        "default": false,
+        keepOnSplit: false,
+        parseHTML: function parseHTML(element) {
+          return element.getAttribute('data-checked') === 'true';
+        },
+        renderHTML: function renderHTML(attributes) {
+          return {
+            'data-checked': attributes.checked
+          };
+        }
+      }
+    };
+  },
+  parseHTML: function parseHTML() {
+    return [{
+      tag: "li[data-type=\"".concat(this.name, "\"]"),
+      priority: 51
+    }];
+  },
+  renderHTML: function renderHTML(_ref7) {
+    var node = _ref7.node,
+        HTMLAttributes = _ref7.HTMLAttributes;
+    return ['li', (0,_tiptap_core__WEBPACK_IMPORTED_MODULE_1__.mergeAttributes)(this.options.HTMLAttributes, HTMLAttributes, {
+      'data-type': this.name
+    }), ['label', ['input', {
+      type: 'radio',
+      value: 'hello',
+      checked: node.attrs.checked ? 'checked' : null
+    }], ['span']], ['div', 0]];
+  },
+  addNodeView: function addNodeView() {
+    var _this2 = this;
+
+    return function (_ref8) {
+      var node = _ref8.node,
+          HTMLAttributes = _ref8.HTMLAttributes,
+          getPos = _ref8.getPos,
+          editor = _ref8.editor;
+      var listItem = document.createElement('li');
+      var radioWrapper = document.createElement('label');
+      var radioStyler = document.createElement('span');
+      var radio = document.createElement('input');
+      var content = document.createElement('div');
+      radioWrapper.contentEditable = 'false';
+      radio.type = 'radio';
+      radio.addEventListener('change', function (event) {
+        // if the editor isn’t editable
+        // we have to undo the latest change
+        if (!editor.isEditable) {
+          radio.checked = !radio.checked;
+          return;
+        }
+
+        var checked = event.target.checked;
+
+        if (editor.isEditable && typeof getPos === 'function') {
+          editor.chain().focus(undefined, {
+            scrollIntoView: false
+          }).command(function (_ref9) {
+            var tr = _ref9.tr;
+            tr.setNodeMarkup(getPos(), undefined, {
+              checked: checked
+            });
+            return true;
+          }).run();
+        }
+      });
+      Object.entries(_this2.options.HTMLAttributes).forEach(function (_ref10) {
+        var _ref11 = _slicedToArray(_ref10, 2),
+            key = _ref11[0],
+            value = _ref11[1];
+
+        radioItem.setAttribute(key, value);
+      });
+      radioItem.dataset.checked = node.attrs.checked;
+
+      if (node.attrs.checked) {
+        radio.setAttribute('checked', 'checked');
+      }
+
+      radioWrapper.append(radio, radioStyler);
+      radioItem.append(radioWrapper, content);
+      Object.entries(HTMLAttributes).forEach(function (_ref12) {
+        var _ref13 = _slicedToArray(_ref12, 2),
+            key = _ref13[0],
+            value = _ref13[1];
+
+        radioItem.setAttribute(key, value);
+      });
+      return {
+        dom: radioItem,
+        contentDOM: content,
+        update: function update(updatedNode) {
+          if (updatedNode.type !== _this2.type) {
+            return false;
+          }
+
+          radioItem.dataset.checked = updatedNode.attrs.checked;
+
+          if (updatedNode.attrs.checked) {
+            radio.setAttribute('checked', 'checked');
+          } else {
+            radio.removeAttribute('checked');
+          }
+
+          return true;
+        }
+      };
+    };
+  }
 }); //  ===================================================
 
 window.setupEditor = function () {
@@ -16091,7 +16255,7 @@ window.setupEditor = function () {
     },
     editor: null,
     init: function init(element) {
-      var _this = this;
+      var _this3 = this;
 
       this.editor = new _tiptap_core__WEBPACK_IMPORTED_MODULE_1__.Editor({
         element: element,
@@ -16635,12 +16799,12 @@ window.setupEditor = function () {
           }
         })],
         editable: true,
-        onUpdate: function onUpdate(_ref5) {
-          var editor = _ref5.editor;
-          _this.content = JSON.stringify(editor.getJSON());
+        onUpdate: function onUpdate(_ref14) {
+          var editor = _ref14.editor;
+          _this3.content = JSON.stringify(editor.getJSON());
         },
         onSelectionUpdate: function onSelectionUpdate() {
-          _this.updateAt = Date.now();
+          _this3.updateAt = Date.now();
         }
       });
     },
@@ -16704,7 +16868,7 @@ window.setupEditor = function () {
     },
     handleUpload: function handleUpload(file, position) {
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
-        var formData, _i, _Object$entries, _Object$entries$_i, key, value;
+        var formData, _i2, _Object$entries, _Object$entries$_i, key, value;
 
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
           while (1) {
@@ -16713,8 +16877,8 @@ window.setupEditor = function () {
                 // const imageUploadConfig = await this.getImageUploadConfig()
                 formData = new FormData();
 
-                for (_i = 0, _Object$entries = Object.entries(imageUploadConfig.uploadUrlFormData); _i < _Object$entries.length; _i++) {
-                  _Object$entries$_i = _slicedToArray(_Object$entries[_i], 2), key = _Object$entries$_i[0], value = _Object$entries$_i[1];
+                for (_i2 = 0, _Object$entries = Object.entries(imageUploadConfig.uploadUrlFormData); _i2 < _Object$entries.length; _i2++) {
+                  _Object$entries$_i = _slicedToArray(_Object$entries[_i2], 2), key = _Object$entries$_i[0], value = _Object$entries$_i[1];
                   formData.set(key, value);
                 }
 

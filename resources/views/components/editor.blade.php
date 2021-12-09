@@ -261,6 +261,19 @@
                 </svg>
             </button>
 
+            <!-- toggleRadioList -->
+            <!-- <button
+                    class="flex items-center justify-center w-8 h-8 -ml-2 rounded hover:bg-gray-300 hover:text-gray-700"
+                    @click="editor.chain().focus().toggleRadioList().run()"
+                    :class="{ 'is-active bg-gray-200 text-gray-700': editor.isActive('radioList') }"
+                    title="toggleRadioList">
+                <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                    <path fill="none" d="M0 0h24v24H0z" />
+                    <path d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm0-2a8 8 0 1 0 0-16 8 8 0 0 0 0 16zm0-3a5 5 0 1 1 0-10 5 5 0 0 1 0 10z" />
+                </svg>
+            </button> -->
+
+
             <!-- Undo -->
             <button
                     class="flex items-center justify-center w-8 h-8 -ml-2 rounded hover:bg-gray-300 hover:text-gray-700"
