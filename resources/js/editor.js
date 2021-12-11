@@ -341,6 +341,33 @@ window.setupEditor = function() {
         },
 
         // Set Link ------------------------------------------------------------------
+        sendJsonArticleData() {
+
+          // let content = JSON.stringify(this.editor.getJSON());
+          let message = '';
+
+          let sendJsonArticleData = JSON.stringify(this.editor.getJSON())
+
+          alert(JSON.stringify(sendJsonArticleData));
+
+          fetch('/article', {
+            method: 'POST',
+            headers: { 
+              'Content-Type': 'text/html',
+            },
+              body: sendJsonArticleData
+            })
+          .then((result) => {
+            message = 'Form sucessfully submitted!'
+            alert(message + result);
+          })
+          .catch(() => {
+            message = 'Ooops! Something went wrong!'
+            alert('Opps!' + message + "");
+          });
+        },
+
+        // Set Link ------------------------------------------------------------------
         setLink() {
             const previousUrl = this.editor.getAttributes('link').href;
             const url = window.prompt('URL', previousUrl);

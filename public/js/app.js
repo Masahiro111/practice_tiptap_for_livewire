@@ -16809,6 +16809,26 @@ window.setupEditor = function () {
       });
     },
     // Set Link ------------------------------------------------------------------
+    sendJsonArticleData: function sendJsonArticleData() {
+      // let content = JSON.stringify(this.editor.getJSON());
+      var message = '';
+      var sendJsonArticleData = JSON.stringify(this.editor.getJSON());
+      alert(JSON.stringify(sendJsonArticleData));
+      fetch('/article', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'text/html'
+        },
+        body: sendJsonArticleData
+      }).then(function (result) {
+        message = 'Form sucessfully submitted!';
+        alert('Opps!' + message + result);
+      })["catch"](function () {
+        message = 'Ooops! Something went wrong!';
+        alert('Opps!' + message + "");
+      });
+    },
+    // Set Link ------------------------------------------------------------------
     setLink: function setLink() {
       var previousUrl = this.editor.getAttributes('link').href;
       var url = window.prompt('URL', previousUrl); // cancelled

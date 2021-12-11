@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\GenerateImageUploadConfigController;
 use Illuminate\Support\Facades\Route;
 
@@ -19,3 +20,5 @@ Route::get('/', function () {
 });
 
 Route::post('/generate-image-upload-config', GenerateImageUploadConfigController::class);
+
+Route::post('/article', [ArticleController::class, 'store']);

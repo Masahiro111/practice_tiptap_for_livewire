@@ -300,6 +300,12 @@
     <div
          x-ref="editor"
          @drop="options.enableImageUpload && handleFileDrop($event)"
-         class="w-full prose py-8 px-8 rounded-lg border-2 border-gray-200 mt-1 m-auto">
+         class="w-full prose py-8 px-8 rounded-lg border-2 border-gray-200 mt-1 mb-8 m-auto">
     </div>
+
+    <button
+            wire:click="store"
+            class="bg-indigo-600 text-white py-2 px-4 rounded-md">
+        Save
+    </button>
 </div>
